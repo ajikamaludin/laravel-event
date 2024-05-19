@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message'),
             ],
             'app_name' => Setting::getByKey('app_name'),
+            'app_logo' => Setting::getByKeyUrl('app_logo'),
         ]);
     }
 }

@@ -27,6 +27,11 @@ class Setting extends Model
         return Setting::where('key', $key)->value('value');
     }
 
+    public static function getByKeyUrl($key): ?string
+    {
+        return self::getByKey($key) != null ? route('file.show', self::getByKey($key)) : null;
+    }
+
     public function url(): Attribute
     {
         return Attribute::make(get: fn () => $this->type == 'image' && $this->value != '' ? route('file.show', ['file' => $this->value]) : null);

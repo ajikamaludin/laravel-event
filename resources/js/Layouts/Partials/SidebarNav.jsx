@@ -53,7 +53,7 @@ const SidebarItemGroup = ({ item }) => {
 
 export default function SidebarNav({ user, show, setShow }) {
     const {
-        props: { app_name },
+        props: { app_name, app_logo },
     } = usePage()
     const menus = routes.filter((item) => {
         item.open = false
@@ -85,10 +85,11 @@ export default function SidebarNav({ user, show, setShow }) {
         >
             <div className="flex flex-col justify-between flex-1">
                 <div className="">
-                    <div className="flex flex-row justify-between md:justify-center p-6">
+                    <div className="flex flex-row justify-between items-center md:justify-center py-2 px-6">
+                        <img src={app_logo} className="w-20 h-3w-20" />
                         <div className="">
                             <Link
-                                className="flex-none text-xl font-semibold text-base-content"
+                                className="flex-none text-lg font-semibold text-base-content"
                                 href={route('dashboard')}
                             >
                                 {app_name}

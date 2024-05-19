@@ -16,8 +16,8 @@ class DummySeeder extends Seeder
     public function run()
     {
         $settings = [
-            ['id' => Str::ulid(), 'key' => 'app_name', 'value' => 'Daisy UI App', 'type' => 'text'],
-            ['id' => Str::ulid(), 'key' => 'app_logo', 'value' => '', 'type' => 'image'],
+            ['id' => Str::ulid(), 'key' => 'app_name', 'value' => 'Duta Transformasi Insani', 'type' => 'text'],
+            ['id' => Str::ulid(), 'key' => 'app_logo', 'value' => 'app_logo.png', 'type' => 'image'],
         ];
 
         Setting::insert($settings);

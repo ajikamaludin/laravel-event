@@ -9,6 +9,7 @@ import SidebarNav from './Partials/SidebarNav'
 import Breadcrumb from '@/Components/DaisyUI/Breadcrumb'
 import ThemeSwitch from '@/Components/DaisyUI/ThemeSwitch'
 import { showToast } from '@/utils'
+import DarkSwitch from '@/Components/DaisyUI/DarkSwitch'
 
 export default function Authenticated({ children, page = '', action = '' }) {
     const {
@@ -54,7 +55,7 @@ export default function Authenticated({ children, page = '', action = '' }) {
 
                             <div className="flex items-center sm:ml-6">
                                 <div className="ml-3 relative">
-                                    <ThemeSwitch />
+                                    <DarkSwitch />
                                 </div>
                                 <div className="ml-3 relative">
                                     <details className="dropdown dropdown-end">
