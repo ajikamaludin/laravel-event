@@ -34,6 +34,14 @@ export default [
         permission: 'view-committe',
     },
     {
+        name: 'Data Logistik',
+        show: true,
+        icon: HiViewList,
+        route: route('logistics.index'),
+        active: 'logistics.*',
+        permission: 'view-logistic',
+    },
+    {
         name: 'User Management',
         show: true,
         icon: HiUser,

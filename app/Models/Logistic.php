@@ -8,4 +8,9 @@ class Logistic extends Model
         'name',
         'category_id',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(LogisticCategory::class, 'category_id');
+    }
 }

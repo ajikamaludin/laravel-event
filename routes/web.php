@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommitteController;
 use App\Http\Controllers\GeneralController;
@@ -40,6 +41,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('logistics/print', [LogisticController::class, 'print'])->name('logistics.print');
+    Route::get('logistics/export', [LogisticController::class, 'export'])->name('logistics.export');
+    Route::delete('logistics/{logistic}', [LogisticController::class, 'destroy'])->name('logistics.destroy');
+    Route::put('logistics/{logistic}', [LogisticController::class, 'update'])->name('logistics.update');
+    Route::post('logistics', [LogisticController::class, 'store'])->name('logistics.store');
+    Route::get('logistics', [LogisticController::class, 'index'])->name('logistics.index');
+
     Route::post('clients/import', [ClientController::class, 'import'])->name('clients.import');
     Route::get('clients/print', [ClientController::class, 'print'])->name('clients.print');
     Route::get('clients/export', [ClientController::class, 'export'])->name('clients.export');
