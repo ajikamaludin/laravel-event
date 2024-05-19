@@ -10,6 +10,14 @@ export default [
         permission: 'view-dashboard',
     },
     {
+        name: 'Data Klien',
+        show: true,
+        icon: HiViewList,
+        route: route('clients.index'),
+        active: 'clients.*',
+        permission: 'view-client',
+    },
+    {
         name: 'Data Pemateri',
         show: true,
         icon: HiViewList,

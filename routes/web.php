@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommitteController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::post('clients/import', [ClientController::class, 'import'])->name('clients.import');
+    Route::get('clients/print', [ClientController::class, 'print'])->name('clients.print');
+    Route::get('clients/export', [ClientController::class, 'export'])->name('clients.export');
+    Route::delete('clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::put('clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::post('clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('clients', [ClientController::class, 'index'])->name('clients.index');
+
     Route::get('committes/print', [CommitteController::class, 'print'])->name('committes.print');
     Route::get('committes/export', [CommitteController::class, 'export'])->name('committes.export');
     Route::delete('committes/{committe}', [CommitteController::class, 'destroy'])->name('committes.destroy');
