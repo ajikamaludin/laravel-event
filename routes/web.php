@@ -5,6 +5,7 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('committes/{committe}', [CommitteController::class, 'update'])->name('committes.update');
     Route::post('committes', [CommitteController::class, 'store'])->name('committes.store');
     Route::get('committes', [CommitteController::class, 'index'])->name('committes.index');
+
+    Route::get('speakers/print', [SpeakerController::class, 'print'])->name('speakers.print');
+    Route::get('speakers/export', [SpeakerController::class, 'export'])->name('speakers.export');
+    Route::delete('speakers/{speaker}', [SpeakerController::class, 'destroy'])->name('speakers.destroy');
+    Route::put('speakers/{speaker}', [SpeakerController::class, 'update'])->name('speakers.update');
+    Route::post('speakers', [SpeakerController::class, 'store'])->name('speakers.store');
+    Route::get('speakers', [SpeakerController::class, 'index'])->name('speakers.index');
 });
 
 // #Guest

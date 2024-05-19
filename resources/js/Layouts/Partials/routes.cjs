@@ -10,6 +10,14 @@ export default [
         permission: 'view-dashboard',
     },
     {
+        name: 'Data Pemateri',
+        show: true,
+        icon: HiViewList,
+        route: route('speakers.index'),
+        active: 'speakers.*',
+        permission: 'view-speaker',
+    },
+    {
         name: 'Data Panitia',
         show: true,
         icon: HiViewList,

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class Speaker extends Model
 {
     protected $fillable = [
@@ -11,4 +13,11 @@ class Speaker extends Model
         'email',
         'photo',
     ];
+
+    protected $appends = ['photo_url'];
+
+    public function photoUrl(): Attribute
+    {
+        return Attribute::make(get: fn () => $this->photo != '' ? route('file.show', ['file' => $this->photo]) : null);
+    }
 }
