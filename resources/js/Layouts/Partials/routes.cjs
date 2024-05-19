@@ -1,4 +1,4 @@
-import { HiChartPie, HiUser, HiCog } from 'react-icons/hi'
+import { HiChartPie, HiUser, HiCog, HiViewList } from 'react-icons/hi'
 
 export default [
     {
@@ -10,7 +10,15 @@ export default [
         permission: 'view-dashboard',
     },
     {
-        name: 'User',
+        name: 'Data Panitia',
+        show: true,
+        icon: HiViewList,
+        route: route('committes.index'),
+        active: 'committes.*',
+        permission: 'view-committe',
+    },
+    {
+        name: 'User Management',
         show: true,
         icon: HiUser,
         items: [

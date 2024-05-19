@@ -20,6 +20,10 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+		['label' => 'Delete Committe', 'name' => 'delete-committe'],
+		['label' => 'Update Committe', 'name' => 'update-committe'],
+		['label' => 'Create Committe', 'name' => 'create-committe'],
+		['label' => 'View Committe', 'name' => 'view-committe'],
 
     ];
 }

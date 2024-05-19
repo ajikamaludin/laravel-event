@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommitteController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -37,7 +38,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('committes/print', [CommitteController::class, 'print'])->name('committes.print');
+    Route::get('committes/export', [CommitteController::class, 'export'])->name('committes.export');
+    Route::delete('committes/{committe}', [CommitteController::class, 'destroy'])->name('committes.destroy');
+    Route::put('committes/{committe}', [CommitteController::class, 'update'])->name('committes.update');
+    Route::post('committes', [CommitteController::class, 'store'])->name('committes.store');
+    Route::get('committes', [CommitteController::class, 'index'])->name('committes.index');
 });
 
 // #Guest
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

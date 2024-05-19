@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { usePage } from '@inertiajs/react'
 import Spinner from './Spinner'
@@ -12,6 +12,7 @@ export default function FormFile({
     help,
     url,
     filemimes = '',
+    download_name = 'file',
 }) {
     const {
         props: { auth },
@@ -57,6 +58,10 @@ export default function FormFile({
                 setLoading(false)
             })
     }
+
+    useEffect(() => {
+        setLink(url)
+    }, [url])
 
     return (
         <div className="my-2">
@@ -109,6 +114,7 @@ export default function FormFile({
                             className="label-text-alt link"
                             href={link}
                             target="_blank"
+                            download={download_name}
                         >
                             Download File
                         </a>
