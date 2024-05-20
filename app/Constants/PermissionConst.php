@@ -20,6 +20,8 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+        ['label' => 'View Keuangan Event', 'name' => 'view-eventfinance'],
+
         ['label' => 'View Status Logistik', 'name' => 'view-statuslogistic'],
 
         ['label' => 'Delete Even', 'name' => 'delete-event'],

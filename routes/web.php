@@ -10,6 +10,7 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommitteController;
+use App\Http\Controllers\EventFinanceController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -48,6 +49,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('eventfinances/print', [EventFinanceController::class, 'print'])->name('eventfinances.print');
+    Route::get('eventfinances/export', [EventFinanceController::class, 'export'])->name('eventfinances.export');
+    Route::put('eventfinances/{event}', [EventFinanceController::class, 'update'])->name('eventfinances.update');
+    Route::get('eventfinances', [EventFinanceController::class, 'index'])->name('eventfinances.index');
+
     Route::get('status-logistics', [StatusLogisticController::class, 'index'])->name('statuslogistics.index');
 
     Route::get('events/print', [EventController::class, 'print'])->name('events.print');

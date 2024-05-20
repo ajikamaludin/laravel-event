@@ -15,8 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
 
             $table->ulid('event_id');
-            $table->decimal('income', 20, 2);
-            $table->decimal('expense', 20, 2);
+            $table->decimal('income', 20, 2)->default(0);
+            $table->decimal('expense', 20, 2)->default(0);
 
             $table->timestamps();
             $table->softDeletes();

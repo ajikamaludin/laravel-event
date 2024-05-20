@@ -95,6 +95,11 @@ class EventController extends Controller
             'place' => $request->place,
         ]);
 
+        $event->finance()->create([
+            'income' => 0,
+            'expense' => 0,
+        ]);
+
         $event->report()->create([
             'rdate' => $request->report_date,
             'file_finance' => $request->file_finance,

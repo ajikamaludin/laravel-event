@@ -74,6 +74,14 @@ export default [
         permission: 'view-logisticreception',
     },
     {
+        name: 'Keuangan Event',
+        show: true,
+        icon: HiViewList,
+        route: route('eventfinances.index'),
+        active: 'eventfinances.*',
+        permission: 'view-eventfinance',
+    },
+    {
         name: 'Status Logistik',
         show: true,
         icon: HiViewList,

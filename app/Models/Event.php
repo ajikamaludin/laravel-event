@@ -42,4 +42,9 @@ class Event extends Model
     {
         return $this->hasMany(EventCommitte::class, 'event_id');
     }
+
+    public function finance()
+    {
+        return $this->hasOne(EventFinance::class, 'event_id');
+    }
 }

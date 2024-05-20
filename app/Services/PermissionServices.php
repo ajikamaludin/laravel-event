@@ -25,7 +25,7 @@ class PermissionServices
             Permission::where('name', $name)->delete();
         }
 
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::where('name', 'Administrator')->first();
         // add new permission to database
         $to_add = array_diff($lists, $permissions);
         foreach ($to_add as $index => $name) {

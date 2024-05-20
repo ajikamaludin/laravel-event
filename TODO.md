@@ -1,7 +1,5 @@
 kurang :
 
--   keuangan event -> 18.30
-
 -   dashboard -> 20.00
 
 -   menu laporan :
