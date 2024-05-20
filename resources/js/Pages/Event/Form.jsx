@@ -316,6 +316,11 @@ export default function Form(props) {
                                 <thead>
                                     <tr>
                                         <th>Peserta</th>
+                                        <th>No. Telp</th>
+                                        <th>Alamat</th>
+                                        <th>Kota</th>
+                                        <th>Email</th>
+                                        <th>Tanggal Lahir</th>
                                         <th />
                                     </tr>
                                 </thead>
@@ -324,6 +329,24 @@ export default function Form(props) {
                                         <tr key={index}>
                                             <td>
                                                 {participant.participant.name}
+                                            </td>
+                                            <td>
+                                                {participant.participant.phone}
+                                            </td>
+                                            <td>
+                                                {
+                                                    participant.participant
+                                                        .address
+                                                }
+                                            </td>
+                                            <td>
+                                                {participant.participant.city}
+                                            </td>
+                                            <td>
+                                                {participant.participant.email}
+                                            </td>
+                                            <td>
+                                                {participant.participant.dob}
                                             </td>
                                             <td>
                                                 <HiXCircle

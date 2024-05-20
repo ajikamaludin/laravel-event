@@ -68,7 +68,7 @@ export default function ParticipantModal(props) {
                     placeholder="peserta"
                     data={{
                         table: 'participants',
-                        display_name: 'name',
+                        display_name: 'name.phone.address.email.city.dob',
                         orderby: 'name.asc',
                     }}
                 />
