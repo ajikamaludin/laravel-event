@@ -22,12 +22,18 @@ class PermissionSeeder extends Seeder
             Permission::insert(['id' => Str::ulid(), ...$permission]);
         }
 
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'Administrator']);
 
         $permissions = Permission::all();
         foreach ($permissions as $permission) {
             $role->rolePermissions()->create(['permission_id' => $permission->id]);
         }
+
+        $managenemt = Role::create(['name' => 'Management']);
+        $marketing = Role::create(['name' => 'Marketing']);
+        $operation = Role::create(['name' => 'Operation']);
+
+        // TODO: attach permission for every role
 
         User::create([
             'name' => 'Super Administrator',

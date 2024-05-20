@@ -50,6 +50,14 @@ export default [
         permission: 'view-logistic',
     },
     {
+        name: 'Kegiatan Marketing',
+        show: true,
+        icon: HiViewList,
+        route: route('marketingactivities.index'),
+        active: 'marketingactivities.*',
+        permission: 'view-marketingactivity',
+    },
+    {
         name: 'Pengaturan Jenis Event',
         show: true,
         icon: HiViewList,

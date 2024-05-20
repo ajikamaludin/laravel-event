@@ -9,7 +9,22 @@ class MarketingActivity extends Model
         'client_id',
         'date',
         'place',
-        'pic_name',
+        'committee_id',
         'notes',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(MarketingActivityCategory::class, 'category_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
+    public function committee()
+    {
+        return $this->belongsTo(Committe::class, 'committee_id');
+    }
 }

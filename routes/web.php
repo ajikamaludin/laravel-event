@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MarketingActivityController;
 use App\Http\Controllers\CommitteTaskController;
 use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\ParticipantController;
@@ -44,6 +45,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('marketingactivities/print', [MarketingActivityController::class, 'print'])->name('marketingactivities.print');
+    Route::get('marketingactivities/export', [MarketingActivityController::class, 'export'])->name('marketingactivities.export');
+    Route::delete('marketingactivities/{marketingactivity}', [MarketingActivityController::class, 'destroy'])->name('marketingactivities.destroy');
+    Route::put('marketingactivities/{marketingactivity}', [MarketingActivityController::class, 'update'])->name('marketingactivities.update');
+    Route::post('marketingactivities', [MarketingActivityController::class, 'store'])->name('marketingactivities.store');
+    Route::get('marketingactivities', [MarketingActivityController::class, 'index'])->name('marketingactivities.index');
+
     Route::get('committetasks/print', [CommitteTaskController::class, 'print'])->name('committetasks.print');
     Route::get('committetasks/export', [CommitteTaskController::class, 'export'])->name('committetasks.export');
     Route::delete('committetasks/{committetask}', [CommitteTaskController::class, 'destroy'])->name('committetasks.destroy');

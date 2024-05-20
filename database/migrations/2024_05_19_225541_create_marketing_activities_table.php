@@ -16,9 +16,9 @@ return new class extends Migration
 
             $table->ulid('category_id');
             $table->ulid('client_id');
+            $table->ulid('committee_id');
             $table->timestamp('date');
             $table->string('place')->nullable();
-            $table->string('pic_name')->nullable();
             $table->text('notes')->nullable();
 
             $table->timestamps();
