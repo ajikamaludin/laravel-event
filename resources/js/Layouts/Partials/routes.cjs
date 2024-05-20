@@ -18,6 +18,14 @@ export default [
         permission: 'view-client',
     },
     {
+        name: 'Data Peserta',
+        show: true,
+        icon: HiViewList,
+        route: route('participants.index'),
+        active: 'participants.*',
+        permission: 'view-participant',
+    },
+    {
         name: 'Data Pemateri',
         show: true,
         icon: HiViewList,

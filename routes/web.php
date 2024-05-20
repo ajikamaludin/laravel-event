@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommitteController;
@@ -41,6 +42,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::post('participants/import', [ParticipantController::class, 'import'])->name('participants.import');
+    Route::get('participants/print', [ParticipantController::class, 'print'])->name('participants.print');
+    Route::get('participants/export', [ParticipantController::class, 'export'])->name('participants.export');
+    Route::delete('participants/{participant}', [ParticipantController::class, 'destroy'])->name('participants.destroy');
+    Route::put('participants/{participant}', [ParticipantController::class, 'update'])->name('participants.update');
+    Route::post('participants', [ParticipantController::class, 'store'])->name('participants.store');
+    Route::get('participants', [ParticipantController::class, 'index'])->name('participants.index');
+
     Route::get('logistics/print', [LogisticController::class, 'print'])->name('logistics.print');
     Route::get('logistics/export', [LogisticController::class, 'export'])->name('logistics.export');
     Route::delete('logistics/{logistic}', [LogisticController::class, 'destroy'])->name('logistics.destroy');

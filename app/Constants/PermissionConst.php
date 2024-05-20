@@ -20,6 +20,10 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+		['label' => 'Delete Participant', 'name' => 'delete-participant'],
+		['label' => 'Update Participant', 'name' => 'update-participant'],
+		['label' => 'Create Participant', 'name' => 'create-participant'],
+		['label' => 'View Participant', 'name' => 'view-participant'],
         ['label' => 'Delete Logistic', 'name' => 'delete-logistic'],
         ['label' => 'Update Logistic', 'name' => 'update-logistic'],
         ['label' => 'Create Logistic', 'name' => 'create-logistic'],

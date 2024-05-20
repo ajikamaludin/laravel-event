@@ -11,7 +11,6 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class LogisticExport implements FromView
 {
-
     public function view(): View
     {
         return view('print.logistic', ['items' => Logistic::with(['category'])->get()]);

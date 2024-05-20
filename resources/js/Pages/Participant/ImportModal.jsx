@@ -23,20 +23,24 @@ export default function ImportModal(props) {
     }
 
     const handleSubmit = () => {
-        post(route('clients.import'), {
+        post(route('participants.import'), {
             onSuccess: () => handleClose(),
         })
     }
 
     return (
-        <Modal isOpen={modalState.isOpen} onClose={handleClose} title={'Klien'}>
+        <Modal
+            isOpen={modalState.isOpen}
+            onClose={handleClose}
+            title={'Peserta'}
+        >
             <div className="form-control space-y-2.5">
                 <FormFile
                     label={'File'}
                     onChange={(file_path) => setData('file', file_path)}
                     error={errors.file}
                     filemimes="text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    help={'gunakan export format file untuk import klien'}
+                    help={'gunakan export format file untuk import'}
                 />
 
                 <div className="flex items-center space-x-2 mt-4">

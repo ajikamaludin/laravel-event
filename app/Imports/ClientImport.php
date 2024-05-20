@@ -15,7 +15,6 @@ class ClientImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            info('info', [$row]);
             Client::create([
                 'company_category' => $row['kategori'],
                 'company_name' => $row['nama_lembaga'],

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->ulid('id')->primary();
 
+            $table->ulid('client_id')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
