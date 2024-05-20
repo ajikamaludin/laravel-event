@@ -2,14 +2,14 @@
 
 namespace App\Exports;
 
-use App\Models\Logistic;
+use App\Models\CommitteTask;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class LogisticExport implements FromView
+class CommitteTaskExport implements FromView
 {
     public function view(): View
     {
-        return view('print.logistic', ['items' => Logistic::with(['category'])->get()]);
+        return view('print.committe_task', ['items' => CommitteTask::all()]);
     }
 }

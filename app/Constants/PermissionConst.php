@@ -20,6 +20,10 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+		['label' => 'Delete Committetask', 'name' => 'delete-committetask'],
+		['label' => 'Update Committetask', 'name' => 'update-committetask'],
+		['label' => 'Create Committetask', 'name' => 'create-committetask'],
+		['label' => 'View Committetask', 'name' => 'view-committetask'],
 		['label' => 'Delete Eventtype', 'name' => 'delete-eventtype'],
 		['label' => 'Update Eventtype', 'name' => 'update-eventtype'],
 		['label' => 'Create Eventtype', 'name' => 'create-eventtype'],

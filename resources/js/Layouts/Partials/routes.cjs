@@ -58,6 +58,14 @@ export default [
         permission: 'view-eventtype',
     },
     {
+        name: 'Pengaturan Tugas Panitia',
+        show: true,
+        icon: HiViewList,
+        route: route('committetasks.index'),
+        active: 'committetasks.*',
+        permission: 'view-committetask',
+    },
+    {
         name: 'User Management',
         show: true,
         icon: HiUser,
