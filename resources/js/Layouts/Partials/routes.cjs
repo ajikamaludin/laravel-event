@@ -50,6 +50,14 @@ export default [
         permission: 'view-logistic',
     },
     {
+        name: 'Pengaturan Jenis Event',
+        show: true,
+        icon: HiViewList,
+        route: route('eventtypes.index'),
+        active: 'eventtypes.*',
+        permission: 'view-eventtype',
+    },
+    {
         name: 'User Management',
         show: true,
         icon: HiUser,

@@ -20,6 +20,10 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+		['label' => 'Delete Eventtype', 'name' => 'delete-eventtype'],
+		['label' => 'Update Eventtype', 'name' => 'update-eventtype'],
+		['label' => 'Create Eventtype', 'name' => 'create-eventtype'],
+		['label' => 'View Eventtype', 'name' => 'view-eventtype'],
 		['label' => 'Delete Participant', 'name' => 'delete-participant'],
 		['label' => 'Update Participant', 'name' => 'update-participant'],
 		['label' => 'Create Participant', 'name' => 'create-participant'],

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ClientController;
@@ -42,6 +43,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('eventtypes/print', [EventTypeController::class, 'print'])->name('eventtypes.print');
+    Route::get('eventtypes/export', [EventTypeController::class, 'export'])->name('eventtypes.export');
+    Route::delete('eventtypes/{eventtype}', [EventTypeController::class, 'destroy'])->name('eventtypes.destroy');
+    Route::put('eventtypes/{eventtype}', [EventTypeController::class, 'update'])->name('eventtypes.update');
+    Route::post('eventtypes', [EventTypeController::class, 'store'])->name('eventtypes.store');
+    Route::get('eventtypes', [EventTypeController::class, 'index'])->name('eventtypes.index');
+
     Route::post('participants/import', [ParticipantController::class, 'import'])->name('participants.import');
     Route::get('participants/print', [ParticipantController::class, 'print'])->name('participants.print');
     Route::get('participants/export', [ParticipantController::class, 'export'])->name('participants.export');

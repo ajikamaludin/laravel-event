@@ -2,15 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Participant;
+use App\Models\EventType;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ParticipantExport implements FromView
+class EventTypeExport implements FromView
 {
     public function view(): View
     {
-        return view('print.participant', ['items' => Participant::with(['client'])->get()]);
+        return view('print.event_type', ['items' => EventType::all()]);
     }
 }
