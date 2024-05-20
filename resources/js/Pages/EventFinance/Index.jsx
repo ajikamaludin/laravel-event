@@ -9,7 +9,7 @@ import Pagination from '@/Components/DaisyUI/Pagination'
 import SearchInput from '@/Components/DaisyUI/SearchInput'
 import Dropdown from '@/Components/DaisyUI/Dropdown'
 import Card from '@/Components/DaisyUI/Card'
-import { formatDate } from '@/utils'
+import { formatDate, formatIDR } from '@/utils'
 import { Option, Select } from '@/Components/DaisyUI/SelectInput'
 import { useModalState } from '@/hooks'
 import FormModal from './FormModal'
@@ -128,8 +128,12 @@ export default function Index(props) {
                                         <td>{formatDate(event.start_date)}</td>
                                         <td>{event.name}</td>
                                         <td>{event.client.company_name}</td>
-                                        <td>{event.finance.income}</td>
-                                        <td>{event.finance.profit}</td>
+                                        <td>
+                                            {formatIDR(event.finance.income)}
+                                        </td>
+                                        <td>
+                                            {formatIDR(event.finance.profit)}
+                                        </td>
                                         <td>{event.finance.profit_percent}</td>
                                         <td className="text-right">
                                             <Dropdown label={'Opsi'}>

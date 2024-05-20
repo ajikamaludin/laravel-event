@@ -1,7 +1,5 @@
 kurang :
 
--   dashboard -> 20.00
-
 -   menu laporan :
     -   [ ] laporan rekapitulsi event
     -   [ ] laporan rekap penugasan pemateri
@@ -11,7 +9,5 @@ kurang :
     -   [ ] laporan rekapitulasi kegiatan marketing
     -   [ ] laporan rekap penugasan panitia
     -   [ ] laporan buku peserta
-            -> 22.00
 
 semua menu ini adalah sub menu lapora dimana halaman akan berisi filter
-dan kemudian tombol export
