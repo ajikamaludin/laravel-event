@@ -57,11 +57,11 @@ export default function Index(props) {
 
     return (
         <AuthenticatedLayout page={'Pengaturan Jenis Event'} action={''}>
-            <Head title=" eventtype" />
+            <Head title="Pengaturan Jenis Event" />
 
             <div>
                 <Card>
-                    <div className="flex justify-between mb-4">
+                    <div className="flex flex-col md:flex-row gap-1 justify-between mb-4">
                         <HasPermission p="create-eventtype">
                             <Button
                                 size="sm"
@@ -71,7 +71,7 @@ export default function Index(props) {
                                 Tambah
                             </Button>
                         </HasPermission>
-                        <div className="flex gap-1 items-center">
+                        <div className="flex gap-1 items-end">
                             <SearchInput
                                 onChange={(e) => setSearch(e.target.value)}
                                 value={search}

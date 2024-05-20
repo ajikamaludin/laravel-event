@@ -58,6 +58,14 @@ export default [
         permission: 'view-marketingactivity',
     },
     {
+        name: 'Kegiatan Logistik',
+        show: true,
+        icon: HiViewList,
+        route: route('logisticreceptions.index'),
+        active: 'logisticreceptions.*',
+        permission: 'view-logisticreception',
+    },
+    {
         name: 'Pengaturan Jenis Event',
         show: true,
         icon: HiViewList,

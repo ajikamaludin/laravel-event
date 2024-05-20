@@ -20,6 +20,11 @@ class PermissionConst
         ['label' => 'View Setting', 'name' => 'view-setting'],
 
         // #Add New Permission Below!
+        ['label' => 'Delete Kegiatan Logistik', 'name' => 'delete-logisticreception'],
+        ['label' => 'Update Kegiatan Logistik', 'name' => 'update-logisticreception'],
+        ['label' => 'Create Kegiatan Logistik', 'name' => 'create-logisticreception'],
+        ['label' => 'View Kegiatan Logistik', 'name' => 'view-logisticreception'],
+
         ['label' => 'Delete Kegiatan Marketing', 'name' => 'delete-marketingactivity'],
         ['label' => 'Update Kegiatan Marketing', 'name' => 'update-marketingactivity'],
         ['label' => 'Create Kegiatan Marketing', 'name' => 'create-marketingactivity'],

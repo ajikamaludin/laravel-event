@@ -13,61 +13,66 @@ import Button from '@/Components/DaisyUI/Button'
 import Dropdown from '@/Components/DaisyUI/Dropdown'
 import Card from '@/Components/DaisyUI/Card'
 import FormModal from './FormModal'
+import { formatDate, formatIDR } from '@/utils'
 import { Option, Select } from '@/Components/DaisyUI/SelectInput'
 import ImportModal from './ImportModal'
 
 export default function Index(props) {
     const {
         data: { links, data },
-        categories,
+        months,
+        years,
     } = props
 
-    const [category, setCategory] = useState('')
+    const [m, setM] = useState(null)
+    const [y, setY] = useState(null)
     const [search, setSearch] = useState('')
-    const preValue = usePrevious(`${search}${category}`)
+    const preValue = usePrevious(`${search}${m}${y}`)
 
     const importModal = useModalState()
     const confirmModal = useModalState()
     const formModal = useModalState()
 
-    const toggleFormModal = (client = null) => {
-        formModal.setData(client)
+    const toggleFormModal = (logisticreception = null) => {
+        formModal.setData(logisticreception)
         formModal.toggle()
     }
 
-    const handleDeleteClick = (client) => {
-        confirmModal.setData(client)
+    const handleDeleteClick = (logisticreception) => {
+        confirmModal.setData(logisticreception)
         confirmModal.toggle()
     }
 
     const onDelete = () => {
         if (confirmModal.data !== null) {
-            router.delete(route('clients.destroy', confirmModal.data.id))
+            router.delete(
+                route('logisticreceptions.destroy', confirmModal.data.id)
+            )
         }
     }
 
-    const params = { q: search, company_category: category }
+    const params = { q: search, m, y }
     useEffect(() => {
         if (preValue) {
             router.get(
                 route(route().current()),
-                { q: search, company_category: category },
+                { q: search, m, y },
                 {
                     replace: true,
                     preserveState: true,
                 }
             )
         }
-    }, [search, category])
+    }, [search, m, y])
 
     return (
-        <AuthenticatedLayout page={'Data Klien'} action={''}>
-            <Head title="klien" />
+        <AuthenticatedLayout page={'Kegiatan Logistik'} action={''}>
+            <Head title="Kegiatan Logistik" />
 
             <div>
                 <Card>
                     <div className="flex flex-col md:flex-row gap-1 justify-between mb-4">
-                        <HasPermission p="create-client">
+                        <HasPermission p="create-logisticreception">
                             <Button
                                 size="sm"
                                 onClick={() => toggleFormModal()}
@@ -82,16 +87,24 @@ export default function Index(props) {
                                 value={search}
                             />
                             <Select
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                value={m}
+                                onChange={(e) => setM(e.target.value)}
                             >
-                                <Option value={''}>--filter kategori--</Option>
-                                {categories.map((c) => (
-                                    <Option
-                                        value={c.company_category}
-                                        key={c.company_category}
-                                    >
-                                        {c.company_category}
+                                <Option value={''}>--filter bulan--</Option>
+                                {months.map((m) => (
+                                    <Option value={m.id} key={m.id}>
+                                        {m.name}
+                                    </Option>
+                                ))}
+                            </Select>
+                            <Select
+                                value={y}
+                                onChange={(e) => setY(e.target.value)}
+                            >
+                                <Option value={''}>--filter tahun--</Option>
+                                {years.map((y) => (
+                                    <Option value={y} key={y}>
+                                        {y}
                                     </Option>
                                 ))}
                             </Select>
@@ -107,7 +120,9 @@ export default function Index(props) {
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                     <a
-                                        href={route('clients.export')}
+                                        href={route(
+                                            'logisticreceptions.export'
+                                        )}
                                         target="_blank"
                                     >
                                         <div className="flex space-x-1 items-center">
@@ -117,7 +132,7 @@ export default function Index(props) {
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                     <a
-                                        href={route('clients.print')}
+                                        href={route('logisticreceptions.print')}
                                         target="_blank"
                                     >
                                         <div className="flex space-x-1 items-center">
@@ -132,23 +147,35 @@ export default function Index(props) {
                         <table className="table mb-4">
                             <thead>
                                 <tr>
-                                    <th>Nama Lembaga</th>
-                                    <th>Kategori</th>
+                                    <th>Tanggal</th>
+                                    <th>Panitia</th>
+                                    <th>Jenis</th>
+                                    <th>Jumlah</th>
                                     <th />
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.map((client, index) => (
-                                    <tr key={client.id}>
-                                        <td>{client.company_name}</td>
-                                        <td>{client.company_category}</td>
+                                {data.map((logisticreception, index) => (
+                                    <tr key={logisticreception.id}>
+                                        <td>
+                                            {formatDate(logisticreception.date)}
+                                        </td>
+                                        <td>
+                                            {logisticreception.committee.name}
+                                        </td>
+                                        <td>
+                                            {logisticreception.logistic.name}
+                                        </td>
+                                        <td>
+                                            {formatIDR(logisticreception.qty)}
+                                        </td>
                                         <td className="text-end">
                                             <Dropdown label={'Opsi'}>
-                                                <HasPermission p="update-client">
+                                                <HasPermission p="update-logisticreception">
                                                     <Dropdown.Item
                                                         onClick={() =>
                                                             toggleFormModal(
-                                                                client
+                                                                logisticreception
                                                             )
                                                         }
                                                     >
@@ -158,11 +185,11 @@ export default function Index(props) {
                                                         </div>
                                                     </Dropdown.Item>
                                                 </HasPermission>
-                                                <HasPermission p="delete-client">
+                                                <HasPermission p="delete-logisticreception">
                                                     <Dropdown.Item
                                                         onClick={() =>
                                                             handleDeleteClick(
-                                                                client
+                                                                logisticreception
                                                             )
                                                         }
                                                     >

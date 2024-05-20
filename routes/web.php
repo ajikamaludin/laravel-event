@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogisticReceptionController;
 use App\Http\Controllers\MarketingActivityController;
 use App\Http\Controllers\CommitteTaskController;
 use App\Http\Controllers\EventTypeController;
@@ -45,6 +46,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::post('logisticreceptions/import', [LogisticReceptionController::class, 'import'])->name('logisticreceptions.import');
+    Route::get('logisticreceptions/print', [LogisticReceptionController::class, 'print'])->name('logisticreceptions.print');
+    Route::get('logisticreceptions/export', [LogisticReceptionController::class, 'export'])->name('logisticreceptions.export');
+    Route::delete('logisticreceptions/{logisticreception}', [LogisticReceptionController::class, 'destroy'])->name('logisticreceptions.destroy');
+    Route::put('logisticreceptions/{logisticreception}', [LogisticReceptionController::class, 'update'])->name('logisticreceptions.update');
+    Route::post('logisticreceptions', [LogisticReceptionController::class, 'store'])->name('logisticreceptions.store');
+    Route::get('logisticreceptions', [LogisticReceptionController::class, 'index'])->name('logisticreceptions.index');
+
     Route::get('marketingactivities/print', [MarketingActivityController::class, 'print'])->name('marketingactivities.print');
     Route::get('marketingactivities/export', [MarketingActivityController::class, 'export'])->name('marketingactivities.export');
     Route::delete('marketingactivities/{marketingactivity}', [MarketingActivityController::class, 'destroy'])->name('marketingactivities.destroy');

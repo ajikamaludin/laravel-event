@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Models\Event;
+use App\Models\LogisticReception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class GeneralServices
 {
@@ -31,8 +33,25 @@ class GeneralServices
             return ['2024'];
         }
 
-        return Event::all()->map(function ($event) {
-            return Carbon::parse($event->start_date)->format('Y');
-        });
+        return Event::select("date")
+            ->groupBy('date')
+            ->get()
+            ->map(fn ($d) => Carbon::parse($d->date)->format('Y'))
+            ->unique()
+            ->values();
+    }
+
+    public static function generateYearLogistics()
+    {
+        if (LogisticReception::count() == 0) {
+            return ['2024'];
+        }
+
+        return LogisticReception::select("rdate")
+            ->groupBy('rdate')
+            ->get()
+            ->map(fn ($d) => Carbon::parse($d->rdate)->format('Y'))
+            ->unique()
+            ->values();
     }
 }
