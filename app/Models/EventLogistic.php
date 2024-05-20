@@ -9,4 +9,9 @@ class EventLogistic extends Model
         'logistic_id',
         'qty_used',
     ];
+
+    public function logistic()
+    {
+        return $this->belongsTo(Logistic::class, 'logistic_id');
+    }
 }

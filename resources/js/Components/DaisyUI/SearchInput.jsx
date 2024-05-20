@@ -8,7 +8,7 @@ export default function SearchInput({ onChange, value }) {
                 <HiSearch className="text-base" />
             </div>
             <TextInput
-                placeholder="Search"
+                placeholder="cari"
                 className="pl-10"
                 onChange={onChange}
                 value={value}

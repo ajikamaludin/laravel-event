@@ -33,10 +33,10 @@ class GeneralServices
             return ['2024'];
         }
 
-        return Event::select("date")
-            ->groupBy('date')
+        return Event::select("start_date")
+            ->groupBy('start_date')
             ->get()
-            ->map(fn ($d) => Carbon::parse($d->date)->format('Y'))
+            ->map(fn ($d) => Carbon::parse($d->start_date)->format('Y'))
             ->unique()
             ->values();
     }

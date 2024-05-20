@@ -8,4 +8,9 @@ class EventParticipant extends Model
         'event_id',
         'participant_id',
     ];
+
+    public function participant()
+    {
+        return $this->belongsTo(Participant::class, 'participant_id');
+    }
 }

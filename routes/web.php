@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogisticReceptionController;
 use App\Http\Controllers\MarketingActivityController;
 use App\Http\Controllers\CommitteTaskController;
@@ -46,6 +47,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('events/print', [EventController::class, 'print'])->name('events.print');
+    Route::get('events/export', [EventController::class, 'export'])->name('events.export');
+    Route::resource('events', EventController::class);
+
     Route::post('logisticreceptions/import', [LogisticReceptionController::class, 'import'])->name('logisticreceptions.import');
     Route::get('logisticreceptions/print', [LogisticReceptionController::class, 'print'])->name('logisticreceptions.print');
     Route::get('logisticreceptions/export', [LogisticReceptionController::class, 'export'])->name('logisticreceptions.export');

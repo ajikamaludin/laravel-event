@@ -9,6 +9,7 @@ export default function Button(props) {
         primary: 'btn-primary',
         secondary: 'btn-secondary',
         error: 'btn-error',
+        sm_primary: 'btn-primary btn-sm',
     }
 
     return (

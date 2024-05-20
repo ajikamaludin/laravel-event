@@ -10,6 +10,14 @@ export default [
         permission: 'view-dashboard',
     },
     {
+        name: 'Data Even',
+        show: true,
+        icon: HiViewList,
+        route: route('events.index'),
+        active: 'events.*',
+        permission: 'view-event',
+    },
+    {
         name: 'Data Klien',
         show: true,
         icon: HiViewList,

@@ -10,4 +10,9 @@ class EventSpeaker extends Model
         'sdate',
         'title',
     ];
+
+    public function speaker()
+    {
+        return $this->belongsTo(Speaker::class, 'speaker_id');
+    }
 }

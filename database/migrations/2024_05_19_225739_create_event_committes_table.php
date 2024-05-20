@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->ulid('event_id');
             $table->ulid('committe_id');
+            $table->ulid('task_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
 
             $table->ulid('event_id');
-            $table->ulid('logistic_id');
-            $table->timestamp('rdate');
+            $table->timestamp('rdate')->nullable();
             $table->string('file_finance')->nullable();
             $table->string('file_event')->nullable();
             $table->smallInteger('status')->default(0);
