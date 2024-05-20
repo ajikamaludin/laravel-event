@@ -66,10 +66,6 @@ export default function SidebarNav({ user, show, setShow }) {
             return filterAllowedMenu(user, item)
         }
 
-        if (isEmpty(item.permission)) {
-            return item
-        }
-
         if (user.role.permissions.find((p) => p.name === item.permission)) {
             return item
         }

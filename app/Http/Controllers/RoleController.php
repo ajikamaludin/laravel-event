@@ -58,8 +58,10 @@ class RoleController extends Controller
             ->with('message', ['type' => 'success', 'message' => 'Item has beed saved']);
     }
 
-    public function edit(Role $role): Response
+    public function edit(Request $request, Role $role): Response
     {
+        $request->user()->allow('update-role', true);
+
         return inertia('Role/Form', [
             'role' => $role->load(['permissions']),
             'permissions' => Permission::all(),

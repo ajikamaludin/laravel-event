@@ -30,10 +30,55 @@ class PermissionSeeder extends Seeder
         }
 
         $managenemt = Role::create(['name' => 'Management']);
-        $marketing = Role::create(['name' => 'Marketing']);
-        $operation = Role::create(['name' => 'Operation']);
+        $permissions = Permission::where([
+            ['name', 'not like', '%user%'],
+            ['name', 'not like', '%role%'],
+            ['name', 'not like', '%setting%'],
+        ])->get();
+        foreach ($permissions as $permission) {
+            $managenemt->rolePermissions()->create(['permission_id' => $permission->id]);
+        }
+        User::create([
+            'name' => 'Management',
+            'email' => 'management@admin.com',
+            'password' => bcrypt('password'),
+            'role_id' => $managenemt->id,
+        ]);
 
-        // TODO: attach permission for every role
+        $marketing = Role::create(['name' => 'Marketing']);
+        $permissions = Permission::where([
+            ['name', 'not like', '%user%'],
+            ['name', 'not like', '%role%'],
+            ['name', 'not like', '%setting%'],
+            ['name', 'not like', '%logistic%'],
+        ])->get();
+        foreach ($permissions as $permission) {
+            $marketing->rolePermissions()->create(['permission_id' => $permission->id]);
+        }
+        User::create([
+            'name' => 'Marketing',
+            'email' => 'marketing@admin.com',
+            'password' => bcrypt('password'),
+            'role_id' => $marketing->id,
+        ]);
+
+        $operation = Role::create(['name' => 'Operation']);
+        $permissions = Permission::where([
+            ['name', 'not like', '%user%'],
+            ['name', 'not like', '%role%'],
+            ['name', 'not like', '%setting%'],
+            ['name', 'not like', '%eventfinance%'],
+            ['name', 'not like', '%marketingactivity%'],
+        ])->get();
+        foreach ($permissions as $permission) {
+            $operation->rolePermissions()->create(['permission_id' => $permission->id]);
+        }
+        User::create([
+            'name' => 'Operation',
+            'email' => 'operation@admin.com',
+            'password' => bcrypt('password'),
+            'role_id' => $operation->id,
+        ]);
 
         User::create([
             'name' => 'Super Administrator',

@@ -7,8 +7,6 @@ export const filterAllowedMenu = (user, item) => {
         } else {
             items = item.items.filter((item) =>
                 user.role.permissions.find((p) => p.name === item.permission)
-                    ? item
-                    : null
             )
         }
 
