@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\EventExport;
 use App\Models\Event;
 use App\Models\EventReport;
+use App\Models\Logistic;
 use App\Services\GeneralServices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -125,6 +126,12 @@ class EventController extends Controller
                     'logistic_id' => $logistic['logistic']['id'],
                     'qty_used' => $logistic['qty_used'],
                 ]);
+                // update logistic
+                $slogistic = Logistic::find($logistic['logistic']['id']);
+                $slogistic->update([
+                    'qty_used' => $slogistic->qty_used + $logistic['qty_used'],
+                    'qty_last' => $slogistic->qty_last - $logistic['qty_used'],
+                ]);
             }
         }
 
@@ -228,12 +235,26 @@ class EventController extends Controller
             }
         }
 
+        // revert logistic
+        foreach ($event->logistics as $elogistic) {
+            $logistic = Logistic::find($elogistic->logistic_id);
+            $logistic->update([
+                'qty_used' => $logistic->qty_used - $elogistic->qty_used,
+                'qty_last' => $logistic->qty_last + $elogistic->qty_used,
+            ]);
+        }
         $event->logistics()->delete();
         if (count($request->logistics) != 0) {
             foreach (collect($request->logistics) as $logistic) {
                 $event->logistics()->create([
                     'logistic_id' => $logistic['logistic']['id'],
                     'qty_used' => $logistic['qty_used'],
+                ]);
+                // update logistic
+                $slogistic = Logistic::find($logistic['logistic']['id']);
+                $slogistic->update([
+                    'qty_used' => $slogistic->qty_used + $logistic['qty_used'],
+                    'qty_last' => $slogistic->qty_last - $logistic['qty_used'],
                 ]);
             }
         }

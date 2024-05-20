@@ -15,6 +15,9 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->ulid('category_id');
             $table->string('name')->nullable();
+            $table->decimal('qty_used', 20, 2)->default(0);
+            $table->decimal('qty_reception', 20, 2)->default(0);
+            $table->decimal('qty_last', 20, 2)->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->ulid('created_by')->nullable();

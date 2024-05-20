@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Exports\LogisticReceptionExport;
 use App\Imports\LogisticReceptionImport;
+use App\Models\Logistic;
 use App\Models\LogisticReception;
 use App\Services\GeneralServices;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Response;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -47,12 +49,21 @@ class LogisticReceptionController extends Controller
             'qty' => 'required|numeric',
         ]);
 
+        DB::beginTransaction();
         LogisticReception::create([
             'logistic_id' => $request->logistic_id,
             'commite_id' => $request->commite_id,
             'rdate' => $request->rdate,
             'qty' => $request->qty,
         ]);
+
+        // create reception only
+        $logistic = Logistic::find($request->logistic_id);
+        $logistic->update([
+            'qty_reception' => $logistic->qty_reception + $request->qty,
+            'qty_last' => $logistic->qty_last + $request->qty,
+        ]);
+        DB::commit();
 
         return redirect()->route('logisticreceptions.index')
             ->with('message', ['type' => 'success', 'message' => 'Item has beed saved']);
@@ -67,12 +78,21 @@ class LogisticReceptionController extends Controller
             'qty' => 'required|numeric',
         ]);
 
+        DB::beginTransaction();
+        // update reception only
+        $logistic = Logistic::find($request->logistic_id);
+        $logistic->update([
+            'qty_reception' => $logistic->qty_reception + $request->qty - $logisticreception->qty,
+            'qty_last' => $logistic->qty_last + $request->qty - $logisticreception->qty,
+        ]);
+
         $logisticreception->fill([
             'logistic_id' => $request->logistic_id,
             'commite_id' => $request->commite_id,
             'rdate' => $request->rdate,
             'qty' => $request->qty,
         ]);
+        DB::commit();
 
         $logisticreception->save();
 
