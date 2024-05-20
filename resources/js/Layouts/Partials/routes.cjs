@@ -74,6 +74,14 @@ export default [
         permission: 'view-logisticreception',
     },
     {
+        name: 'Status Logistik',
+        show: true,
+        icon: HiViewList,
+        route: route('statuslogistics.index'),
+        active: 'statuslogistics.*',
+        permission: 'view-statuslogistic',
+    },
+    {
         name: 'Pengaturan Jenis Event',
         show: true,
         icon: HiViewList,

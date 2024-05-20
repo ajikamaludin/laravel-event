@@ -1,7 +1,6 @@
 kurang :
 
 -   keuangan event -> 18.30
--   status logistik -> 19.00
 
 -   dashboard -> 20.00
 

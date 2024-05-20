@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StatusLogisticController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogisticReceptionController;
 use App\Http\Controllers\MarketingActivityController;
@@ -47,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // #Admin
+    Route::get('status-logistics', [StatusLogisticController::class, 'index'])->name('statuslogistics.index');
+
     Route::get('events/print', [EventController::class, 'print'])->name('events.print');
     Route::get('events/export', [EventController::class, 'export'])->name('events.export');
     Route::resource('events', EventController::class);
