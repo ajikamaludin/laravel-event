@@ -6,7 +6,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import FormInputDateRanger from '@/Components/DaisyUI/FormInputDateRange'
 import { usePrevious } from 'react-use'
-import { formatDate, formatIDR } from '@/utils'
+import { converToDate, formatDate, formatIDR } from '@/utils'
 import Chart from 'react-apexcharts'
 
 export default function Dashboard({
@@ -28,8 +28,8 @@ export default function Dashboard({
     const calenderEvents = events.map((e) => {
         return {
             title: `${e.name} - ${e.place}`,
-            start: e.start_date,
-            end: e.end_date,
+            start: converToDate(e.start_date),
+            end: converToDate(e.end_date),
             id: e.id,
             url: route('events.edit', e.id),
         }
@@ -59,15 +59,59 @@ export default function Dashboard({
 
             <div className="w-full gap-1 flex flex-col">
                 <Card>
-                    <FullCalendar
-                        plugins={[dayGridPlugin]}
-                        initialView="dayGridMonth"
-                        events={calenderEvents}
-                    />
+                    <div className="flex flex-row gap-6">
+                        <div className="flex-1">
+                            <FullCalendar
+                                plugins={[dayGridPlugin]}
+                                initialView="dayGridMonth"
+                                events={calenderEvents}
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <div className="text-lg font-bold">
+                                Event Terakhir
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tanggal Awal</th>
+                                            <th>Tanggal Akhir</th>
+                                            <th>Nama</th>
+                                            <th>Lembaga</th>
+                                            <th />
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {eventlasts.map((event, index) => (
+                                            <tr key={event.id}>
+                                                <td>{index + 1}</td>
+                                                <td>
+                                                    {formatDate(
+                                                        event.start_date
+                                                    )}
+                                                </td>
+                                                <td>
+                                                    {formatDate(event.end_date)}
+                                                </td>
+                                                <td>{event.name}</td>
+                                                <td>
+                                                    {event.client.company_name}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </Card>
+
                 <Card>
                     <div className="w-full gap-3 flex flex-col">
                         <FormInputDateRanger
+                            label="Periode"
                             value={dates}
                             onChange={setDates}
                         />
@@ -135,34 +179,6 @@ export default function Dashboard({
                                 />
                             </div>
                         </div>
-                    </div>
-                </Card>
-                <Card>
-                    <div>Event Terakhir</div>
-                    <div className="overflow-x-auto">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Tanggal Awal</th>
-                                    <th>Tanggal Akhir</th>
-                                    <th>Nama</th>
-                                    <th>Lembaga</th>
-                                    <th />
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {eventlasts.map((event, index) => (
-                                    <tr key={event.id}>
-                                        <td>{index + 1}</td>
-                                        <td>{formatDate(event.start_date)}</td>
-                                        <td>{formatDate(event.end_date)}</td>
-                                        <td>{event.name}</td>
-                                        <td>{event.client.company_name}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
                     </div>
                 </Card>
             </div>

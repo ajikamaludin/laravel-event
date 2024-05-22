@@ -56,8 +56,8 @@ export default function Index(props) {
     }, [search, m, y])
 
     return (
-        <AuthenticatedLayout page={'Data Even'} action={''}>
-            <Head title="Data Even" />
+        <AuthenticatedLayout page={'Data Event'} action={''}>
+            <Head title="Data Event" />
 
             <div>
                 <Card>

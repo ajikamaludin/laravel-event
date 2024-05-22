@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Participant extends Model
 {
     protected $fillable = [
+        'code',
         'name',
         'phone',
         'address',
@@ -15,6 +16,7 @@ class Participant extends Model
         'gender',
         'city',
         'dob',
+        'job_trust',
         'client_id',
     ];
 

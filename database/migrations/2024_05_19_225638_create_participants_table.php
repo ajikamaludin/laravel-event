@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('city')->nullable();
             $table->timestamp('dob')->nullable();
+            $table->string('job_trust')->nullable();
+            $table->string('code')->nullable(); //must unique
 
             $table->timestamps();
             $table->softDeletes();

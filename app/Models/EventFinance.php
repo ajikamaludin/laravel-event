@@ -21,6 +21,6 @@ class EventFinance extends Model
 
     public function profitPercent(): Attribute
     {
-        return Attribute::make(get: fn () => ($this->expense != 0 ? ($this->profit / $this->expense) * 100 : 0) . '%');
+        return Attribute::make(get: fn () => ($this->expense != 0 ? number_format(($this->profit / $this->income) * 100, 2) : 0) . '%');
     }
 }

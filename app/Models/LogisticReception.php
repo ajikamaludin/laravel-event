@@ -13,11 +13,11 @@ class LogisticReception extends Model
 
     public function logistic()
     {
-        return $this->belongsTo(Logistic::class, 'logistic_id');
+        return $this->belongsTo(Logistic::class, 'logistic_id')->withTrashed();
     }
 
     public function committee()
     {
-        return $this->belongsTo(Committe::class, 'commite_id');
+        return $this->belongsTo(Committe::class, 'commite_id')->withTrashed();
     }
 }

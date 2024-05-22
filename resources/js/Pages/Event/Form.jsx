@@ -48,10 +48,6 @@ export default function Form(props) {
     const [status, setStatus] = useState(0)
 
     const handleAddSpeaker = ({ speaker, sdate, title }) => {
-        const exists = speakers.find((sp) => sp.speaker.id === speaker.id)
-        if (exists) {
-            return
-        }
         setSpeakers(
             speakers.concat({
                 speaker,
@@ -165,17 +161,17 @@ export default function Form(props) {
             auth={props.auth}
             errors={props.errors}
             flash={props.flash}
-            page={'Data Even'}
+            page={'Data Event'}
             action={''}
         >
-            <Head title="Data Even" />
+            <Head title="Data Event" />
 
             <div>
                 <div className="flex flex-col gap-1">
                     <Card>
                         <div className="flex flex-col gap-2 justify-between">
                             <SelectionInput
-                                label="Jenis"
+                                label="Nama Program"
                                 itemSelected={type_id}
                                 onItemSelected={(item) =>
                                     setTypeId(item ? item.id : null)
@@ -218,7 +214,7 @@ export default function Form(props) {
                                 name="name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                label="Nama"
+                                label="Nama Kegiatan"
                                 error={errors.name}
                             />
                             <TextInput
@@ -377,7 +373,7 @@ export default function Form(props) {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th>Jenis</th>
+                                        <th>Fasilitas</th>
                                         <th>Jumlah digunakan</th>
                                         <th />
                                     </tr>

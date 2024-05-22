@@ -117,6 +117,7 @@ export default function Index(props) {
                                     <th>Nama</th>
                                     <th>Lembaga</th>
                                     <th>Pendapatan</th>
+                                    <th>Pengeluaran</th>
                                     <th>Laba</th>
                                     <th>Persen</th>
                                     <th />
@@ -130,6 +131,9 @@ export default function Index(props) {
                                         <td>{event.client.company_name}</td>
                                         <td>
                                             {formatIDR(event.finance.income)}
+                                        </td>
+                                        <td>
+                                            {formatIDR(event.finance.expense)}
                                         </td>
                                         <td>
                                             {formatIDR(event.finance.profit)}

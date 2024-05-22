@@ -10,7 +10,7 @@ export default [
         permission: 'view-dashboard',
     },
     {
-        name: 'Data Even',
+        name: 'Data Event',
         show: true,
         icon: HiViewList,
         route: route('events.index'),
@@ -18,7 +18,7 @@ export default [
         permission: 'view-event',
     },
     {
-        name: 'Data Klien',
+        name: 'Data Lembaga',
         show: true,
         icon: HiViewList,
         route: route('clients.index'),

@@ -18,7 +18,10 @@ class ParticipantController extends Controller
         $query = Participant::with(['client']);
 
         if ($request->q) {
-            $query->where('name', 'like', "%{$request->q}%");
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', "%{$request->q}%")
+                    ->orWhere('code', 'like', "%{$request->q}%");
+            });
         }
 
         if ($request->city) {
@@ -41,6 +44,7 @@ class ParticipantController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            'code' => 'required|string|max:255|unique:participants,code',
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
@@ -49,10 +53,12 @@ class ParticipantController extends Controller
             'gender' => 'nullable|string',
             'city' => 'nullable|string',
             'dob' => 'nullable|date',
+            'job_trust' => 'nullable|string',
             'client_id' => 'required|exists:clients,id'
         ]);
 
         Participant::create([
+            'code' => $request->code,
             'name' => $request->name,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -61,6 +67,7 @@ class ParticipantController extends Controller
             'gender' => $request->gender,
             'city' => $request->city,
             'dob' => $request->dob,
+            'job_trust' => $request->job_trust,
             'client_id' => $request->client_id,
         ]);
 
@@ -71,6 +78,7 @@ class ParticipantController extends Controller
     public function update(Request $request, Participant $participant): RedirectResponse
     {
         $request->validate([
+            'code' => 'required|string|max:255|unique:participants,code,' . $participant->id,
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
@@ -78,11 +86,13 @@ class ParticipantController extends Controller
             'photo' => 'nullable|string',
             'gender' => 'nullable|string',
             'city' => 'nullable|string',
+            'job_trust' => 'nullable|string',
             'dob' => 'nullable|date',
             'client_id' => 'required|exists:clients,id'
         ]);
 
         $participant->fill([
+            'code' => $request->code,
             'name' => $request->name,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -91,6 +101,7 @@ class ParticipantController extends Controller
             'gender' => $request->gender,
             'city' => $request->city,
             'dob' => $request->dob,
+            'job_trust' => $request->job_trust,
             'client_id' => $request->client_id,
         ]);
 

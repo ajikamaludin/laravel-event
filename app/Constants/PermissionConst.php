@@ -62,10 +62,10 @@ class PermissionConst
         ['label' => 'Create Logistik', 'name' => 'create-logistic'],
         ['label' => 'View Logistik', 'name' => 'view-logistic'],
 
-        ['label' => 'Delete Klien', 'name' => 'delete-client'],
-        ['label' => 'Update Klien', 'name' => 'update-client'],
-        ['label' => 'Create Klien', 'name' => 'create-client'],
-        ['label' => 'View Klien', 'name' => 'view-client'],
+        ['label' => 'Delete Data Lembaga', 'name' => 'delete-client'],
+        ['label' => 'Update Data Lembaga', 'name' => 'update-client'],
+        ['label' => 'Create Data Lembaga', 'name' => 'create-client'],
+        ['label' => 'View Data Lembaga', 'name' => 'view-client'],
 
         ['label' => 'Delete Penitia', 'name' => 'delete-committe'],
         ['label' => 'Update Penitia', 'name' => 'update-committe'],

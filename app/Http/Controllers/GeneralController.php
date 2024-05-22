@@ -56,12 +56,12 @@ class GeneralController extends Controller
 
         $events = Event::whereBetween('start_date', [
             $startDate->format('d-m-Y'), $endDate->addWeeks(3)->endOfMonth()->format('d-m-Y')
-        ]);
+        ])->get();
 
         $eventlasts = Event::with(['client'])->orderBy('created_at', 'desc')->limit(10)->get();
 
         return inertia('Dashboard', [
-            'events' => $events->get(),
+            'events' => $events,
             '_start_date' => $startDate->format('Y-m-d'),
             '_end_date' => $endDate->format('Y-m-d'),
             'types' => $types,

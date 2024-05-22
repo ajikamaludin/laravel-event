@@ -21,9 +21,9 @@ class LogisticReceptionImport implements ToCollection, WithHeadingRow
             LogisticReception::create([
                 'logistic_id' => Logistic::firstOrCreate(
                     ['name' => $row['jenis']],
-                    ['category_id' => LogisticCategory::first()->value('id')]
+                    ['category_id' => LogisticCategory::first()->id]
                 )->value('id'),
-                'commite_id' => Committe::firstOrCreate(['name' => $row['panitia']])->value('id'),
+                'commite_id' => Committe::firstOrCreate(['name' => $row['panitia']])->id,
                 'rdate' => $row['tanggal'],
                 'qty' => $row['jumlah'],
             ]);

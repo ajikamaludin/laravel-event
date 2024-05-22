@@ -17,6 +17,7 @@
     <table style="width: 100%;" border=1>
         <thead>
             <tr>
+                <td style="text-align: center;">ID</td>
                 <td style="text-align: center;">Nama</td>
                 <td style="text-align: center;">No.Telp</td>
                 <td style="text-align: center;">Alamat</td>
@@ -24,12 +25,14 @@
                 <td style="text-align: center;">Jenis Kelamin</td>
                 <td style="text-align: center;">Kota</td>
                 <td style="text-align: center;">Tanggal Lahir</td>
+                <td style="text-align: center;">Amanah Pekerjaan</td>
                 <td style="text-align: center;">Nama Lembaga</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $index => $item)
             <tr>
+                <td>{{ $item->code }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->phone }}</td>
                 <td>{{ $item->address }}</td>
@@ -37,6 +40,7 @@
                 <td>{{ $item->gender }}</td>
                 <td>{{ $item->city }}</td>
                 <td>{{ $item->dob }}</td>
+                <td>{{ $item->job_trust }}</td>
                 <td>{{ $item->client->company_name }}</td>
             </tr>
             @endforeach

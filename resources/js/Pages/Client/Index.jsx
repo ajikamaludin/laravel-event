@@ -61,8 +61,8 @@ export default function Index(props) {
     }, [search, category])
 
     return (
-        <AuthenticatedLayout page={'Data Klien'} action={''}>
-            <Head title="klien" />
+        <AuthenticatedLayout page={'Data Lembaga'} action={''}>
+            <Head title="Lembaga" />
 
             <div>
                 <Card>
@@ -134,6 +134,8 @@ export default function Index(props) {
                                 <tr>
                                     <th>Nama Lembaga</th>
                                     <th>Kategori</th>
+                                    <th>Contact Person</th>
+                                    <th>No.Telp Contact Person</th>
                                     <th />
                                 </tr>
                             </thead>
@@ -142,6 +144,8 @@ export default function Index(props) {
                                     <tr key={client.id}>
                                         <td>{client.company_name}</td>
                                         <td>{client.company_category}</td>
+                                        <td>{client.pic_name}</td>
+                                        <td>{client.pic_phone}</td>
                                         <td className="text-end">
                                             <Dropdown label={'Opsi'}>
                                                 <HasPermission p="update-client">

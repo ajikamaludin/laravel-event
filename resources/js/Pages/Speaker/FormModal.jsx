@@ -72,7 +72,7 @@ export default function FormModal(props) {
         <Modal
             isOpen={modalState.isOpen}
             onClose={handleClose}
-            title={'Panitia'}
+            title={'Pemateri'}
         >
             <div className="form-control space-y-2.5">
                 <TextInput

@@ -150,8 +150,9 @@ export default function Index(props) {
                         <table className="table mb-4">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nama</th>
-                                    <th>Nama Lembaga Klien</th>
+                                    <th>Nama Lembaga</th>
                                     <th>No.Telp</th>
                                     <th>Kota</th>
                                     <th />
@@ -160,6 +161,7 @@ export default function Index(props) {
                             <tbody>
                                 {data.map((participant, index) => (
                                     <tr key={participant.id}>
+                                        <td>{participant.code}</td>
                                         <td>{participant.name}</td>
                                         <td>
                                             {participant.client.company_name}

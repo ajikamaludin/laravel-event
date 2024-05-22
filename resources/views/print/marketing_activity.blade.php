@@ -22,6 +22,7 @@
                 <td style="text-align: center;">Tempat</td>
                 <td style="text-align: center;">Jenis</td>
                 <td style="text-align: center;">Panitia</td>
+                <td style="text-align: center;">Catatan</td>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                 <td>{{ $item->place }}</td>
                 <td>{{ $item->category->name }}</td>
                 <td>{{ $item->committee->name }}</td>
+                <td>{{ $item->notes }}</td>
             </tr>
             @endforeach
         </tbody>

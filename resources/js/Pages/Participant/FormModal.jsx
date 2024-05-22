@@ -17,6 +17,7 @@ export default function FormModal(props) {
     const { modalState } = props
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm({
+            code: '',
             name: '',
             phone: '',
             address: '',
@@ -26,6 +27,7 @@ export default function FormModal(props) {
             city: '',
             dob: '',
             client_id: '',
+            job_trust: '',
             photo_url: null,
         })
 
@@ -68,6 +70,7 @@ export default function FormModal(props) {
         const participant = modalState.data
         if (isEmpty(participant) === false) {
             setData({
+                code: participant.code,
                 name: participant.name,
                 phone: participant.phone,
                 address: participant.address,
@@ -76,6 +79,7 @@ export default function FormModal(props) {
                 gender: participant.gender,
                 city: participant.city,
                 dob: participant.dob,
+                job_trust: participant.job_trust,
                 client_id: participant.client_id,
                 photo_url: participant.photo_url,
             })
@@ -90,6 +94,13 @@ export default function FormModal(props) {
             title={'Peserta'}
         >
             <div className="form-control space-y-2.5">
+                <TextInput
+                    name="code"
+                    value={data.code}
+                    onChange={handleOnChange}
+                    label="ID Peserta"
+                    error={errors.code}
+                />
                 <TextInput
                     name="name"
                     value={data.name}
@@ -125,6 +136,13 @@ export default function FormModal(props) {
                     label="Kota"
                     error={errors.city}
                 />
+                <TextInput
+                    name="job_trust"
+                    value={data.job_trust}
+                    onChange={handleOnChange}
+                    label="Amanah Pekerjaan"
+                    error={errors.job_trust}
+                />
                 <FormFile
                     label={'Photo'}
                     onChange={(file_path) => setData('photo', file_path)}
@@ -155,7 +173,7 @@ export default function FormModal(props) {
                     value={data.client_id}
                     onChange={handleOnChange}
                     name="client_id"
-                    label="Klien"
+                    label="Lembaga"
                     error={errors.client_id}
                 >
                     <Option value={''}></Option>

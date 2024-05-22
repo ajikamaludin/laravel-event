@@ -107,7 +107,7 @@ class ClientController extends Controller
 
     public function export()
     {
-        return Excel::download(new ClientExport, 'klien.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        return Excel::download(new ClientExport, 'lembaga.xlsx', \Maatwebsite\Excel\Excel::XLSX);
     }
 
     public function print()

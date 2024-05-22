@@ -57,7 +57,7 @@ export default function LogisticModal(props) {
         <Modal
             isOpen={modalState.isOpen}
             onClose={handleClose}
-            title={'Logistik'}
+            title={'Fasilitas'}
         >
             <div className="form-control space-y-2.5">
                 <SelectionInput
