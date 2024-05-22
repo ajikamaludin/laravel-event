@@ -18,6 +18,11 @@ export default defineConfig({
                     moment: ['moment'],
                     daisyui: ['daisyui'],
                     sonner: ['sonner'],
+                    apexcharts: ['apexcharts'],
+                    reactapexcharts: ['react-apexcharts'],
+                    fullcalendarcore: ['@fullcalendar/core'],
+                    fullcalendardaygrid: ['@fullcalendar/daygrid'],
+                    fullcalendarreact: ['@fullcalendar/react'],
                     reacttailwindcssdatepicker: [
                         'react-tailwindcss-datepicker',
                     ],
