@@ -47,4 +47,27 @@ class EventController extends Controller
             '_end_date' => $endDate->format('Y-m-d')
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $event = null;
+
+        if ($request->event) {
+            $event = Event::find($request->event)
+                ->load([
+                    'speakers.speaker',
+                    'committes.committe',
+                    'committes.task',
+                    'logistics.logistic',
+                    'client',
+                    'finance',
+                    'report'
+                ])
+                ->loadCount(['participants']);
+        }
+
+        return inertia('Report/Event/Show', [
+            '_event' => $event
+        ]);
+    }
 }

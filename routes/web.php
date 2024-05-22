@@ -132,8 +132,8 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('events', [Report\EventController::class, 'index'])->name('event.index');
             Route::get('event-speakers', [Report\EventSpeakerController::class, 'index'])->name('event-speaker.index');
-            Route::get('detail-events', [Report\EventController::class, 'index'])->name('detail-event.index');
-            Route::get('detail-participants', [Report\EventController::class, 'index'])->name('detail-participan.index');
+            Route::get('detail-events', [Report\EventController::class, 'show'])->name('detail-event.index');
+            Route::get('detail-participants', [Report\EventParticipantReportController::class, 'show'])->name('detail-participan.index');
             Route::get('event-finances', [Report\EventFinanceController::class, 'index'])->name('event-finance.index');
             Route::get('marketing-activities', [Report\MarketingActivityController::class, 'index'])->name('marketing-activity.index');
             Route::get('event-committees', [Report\EventCommitteReportController::class, 'index'])->name('event-committees.index');

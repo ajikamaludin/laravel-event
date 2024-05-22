@@ -31,4 +31,9 @@ class Participant extends Model
     {
         return $this->belongsTo(Client::class, 'client_id');
     }
+
+    public function events()
+    {
+        return $this->hasMany(EventParticipant::class, 'participant_id');
+    }
 }

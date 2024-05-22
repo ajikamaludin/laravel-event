@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
 use App\Models\EventParticipant;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Response;
@@ -50,6 +51,24 @@ class EventParticipantReportController extends Controller
             'data' => $query->paginate(10),
             '_start_date' => $startDate->format('Y-m-d'),
             '_end_date' => $endDate->format('Y-m-d')
+        ]);
+    }
+
+    public function show(Request $request)
+    {
+        $participant = null;
+
+        if ($request->client && $request->participant) {
+            $participant = Participant::find($request->participant)
+                ->load([
+                    'client',
+                    'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $request->client)),
+                    'events.event'
+                ]);
+        }
+
+        return inertia('Report/Participant/Index', [
+            '_participant' => $participant
         ]);
     }
 }
