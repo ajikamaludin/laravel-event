@@ -47,4 +47,9 @@ class Event extends Model
     {
         return $this->hasOne(EventFinance::class, 'event_id');
     }
+
+    public function type()
+    {
+        return $this->belongsTo(EventType::class, 'type_id')->withTrashed();
+    }
 }

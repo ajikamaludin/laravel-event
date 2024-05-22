@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Report;
 use App\Http\Controllers\StatusLogisticController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogisticReceptionController;
@@ -125,6 +126,19 @@ Route::middleware(['auth'])->group(function () {
     Route::put('speakers/{speaker}', [SpeakerController::class, 'update'])->name('speakers.update');
     Route::post('speakers', [SpeakerController::class, 'store'])->name('speakers.store');
     Route::get('speakers', [SpeakerController::class, 'index'])->name('speakers.index');
+
+    Route::prefix('report/')
+        ->name('report.')
+        ->group(function () {
+            Route::get('events', [Report\EventController::class, 'index'])->name('event.index');
+            Route::get('event-speakers', [Report\EventSpeakerController::class, 'index'])->name('event-speaker.index');
+            Route::get('detail-events', [Report\EventController::class, 'index'])->name('detail-event.index');
+            Route::get('detail-participants', [Report\EventController::class, 'index'])->name('detail-participan.index');
+            Route::get('event-finances', [Report\EventFinanceController::class, 'index'])->name('event-finance.index');
+            Route::get('marketing-activities', [Report\MarketingActivityController::class, 'index'])->name('marketing-activity.index');
+            Route::get('event-committees', [Report\EventCommitteReportController::class, 'index'])->name('event-committees.index');
+            Route::get('book-participants', [Report\EventParticipantReportController::class, 'index'])->name('book-participant.index');
+        });
 });
 
 // #Guest

@@ -13,6 +13,7 @@ export default function FormInputDateRanger({
             {label !== '' && <label className="text-label">{label}</label>}
             <Datepicker
                 inputClassName={'input input-bordered w-full text-base-content'}
+                useRange={false}
                 value={value}
                 onChange={(date) => onChange(date)}
                 displayFormat={'DD/MM/YYYY'}

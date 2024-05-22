@@ -24,4 +24,9 @@ class EventCommitte extends Model
     {
         return $this->belongsTo(Committe::class, 'committe_id');
     }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
 }
