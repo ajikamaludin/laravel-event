@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\Report\EventFinanceExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\EventCategory;
@@ -9,6 +10,7 @@ use App\Models\EventType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventFinanceController extends Controller
 {
@@ -46,5 +48,15 @@ class EventFinanceController extends Controller
             '_start_date' => $startDate->format('Y-m-d'),
             '_end_date' => $endDate->format('Y-m-d')
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new EventFinanceExport, 'report-event-keuangan.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function print()
+    {
+        return view('print.report.event_finance', ['items' => Event::with(['client', 'type.category', 'finance'])->get()]);
     }
 }

@@ -18,22 +18,26 @@
         <thead>
             <tr>
                 <td style="text-align: center;">Tanggal Awal</td>
-                <td style="text-align: center;">Nama</td>
+                <td style="text-align: center;">Tanggal Akhir</td>
+                <td style="text-align: center;">Nama Kegiatan</td>
                 <td style="text-align: center;">Lembaga</td>
+                <td style="text-align: center;">Kategori</td>
                 <td style="text-align: center;">Pendapatan</td>
+                <td style="text-align: center;">Pengeluaran</td>
                 <td style="text-align: center;">Laba</td>
-                <td style="text-align: center;">Persen</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $index => $item)
             <tr>
                 <td>{{ $item->start_date }}</td>
+                <td>{{ $item->end_date }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->client->company_name }}</td>
-                <td>{{ $item->finance->income }}</td>
-                <td>{{ $item->finance->profit }}</td>
-                <td>{{ $item->finance->profit_percent }}</td>
+                <td>{{ $item->type->category->name }}</td>
+                <td>{{ format_idr($item->finance->income) }}</td>
+                <td>{{ format_idr($item->finance->outcome) }}</td>
+                <td>{{ format_idr($item->finance->profit) }}</td>
             </tr>
             @endforeach
         </tbody>

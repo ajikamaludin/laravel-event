@@ -48,7 +48,7 @@ export default function Index(props) {
 
             <div>
                 <Card>
-                    <div className="flex flex-col md:flex-row gap-1 justify-between mb-4">
+                    <div className="flex flex-col md:flex-row gap-1 justify-between mb-4 items-end md:items-center">
                         <SearchInput
                             onChange={(e) => setSearch(e.target.value)}
                             value={search}
@@ -87,6 +87,13 @@ export default function Index(props) {
                                 onChange={(d) => setDates(d)}
                             />
                         </div>
+                        <a
+                            className="btn btn-secondary"
+                            href={route('report.book-participant.print')}
+                            target="_blank"
+                        >
+                            Print
+                        </a>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="table">

@@ -26,22 +26,22 @@
                 <td style="text-align: center;">Kota</td>
                 <td style="text-align: center;">Tanggal Lahir</td>
                 <td style="text-align: center;">Amanah Pekerjaan</td>
-                <td style="text-align: center;">Nama Lembaga</td>
+                <td style="text-align: center;">Foto</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $index => $item)
             <tr>
-                <td>{{ $item->code }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->phone }}</td>
-                <td>{{ $item->address }}</td>
-                <td>{{ $item->email }}</td>
-                <td>{{ $item->gender }}</td>
-                <td>{{ $item->city }}</td>
-                <td>{{ $item->dob }}</td>
-                <td>{{ $item->job_trust }}</td>
-                <td>{{ $item->client->company_name }}</td>
+                <td>{{ $item->participant->code }}</td>
+                <td>{{ $item->participant->name }}</td>
+                <td>{{ $item->participant->phone }}</td>
+                <td>{{ $item->participant->address }}</td>
+                <td>{{ $item->participant->email }}</td>
+                <td>{{ $item->participant->gender }}</td>
+                <td>{{ $item->participant->city }}</td>
+                <td>{{ $item->participant->dob }}</td>
+                <td>{{ $item->participant->job_trust }}</td>
+                <td><img src='{{ $item->participant->photo_url }}' style="max-width: 100px;" /></td>
             </tr>
             @endforeach
         </tbody>
@@ -49,9 +49,9 @@
 </body>
 <script>
     window.print()
-    // window.onfocus = function() {
-    //     window.close();
-    // }
+    window.onfocus = function() {
+        window.close();
+    }
 </script>
 
 </html>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\Report\EventCommitteExport;
 use App\Http\Controllers\Controller;
 use App\Models\EventCommitte;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventCommitteReportController extends Controller
 {
@@ -49,5 +51,15 @@ class EventCommitteReportController extends Controller
             '_start_date' => $startDate->format('Y-m-d'),
             '_end_date' => $endDate->format('Y-m-d')
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new EventCommitteExport, 'report-penugasan-panitia.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function print()
+    {
+        return view('print.report.event_committe', ['items' => EventCommitte::with(['event.client', 'committe', 'task'])->get()]);
     }
 }

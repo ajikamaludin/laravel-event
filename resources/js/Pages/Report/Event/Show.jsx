@@ -45,6 +45,18 @@ export default function Index(props) {
                             }}
                         />
                         <Button onClick={handleChange}>Tampil</Button>
+                        {_event && (
+                            <a
+                                href={route(
+                                    'report.detail-event.print',
+                                    _event.id
+                                )}
+                                target="_blank"
+                                className="btn btn-secondary"
+                            >
+                                Print
+                            </a>
+                        )}
                     </div>
                     {_event && (
                         <>

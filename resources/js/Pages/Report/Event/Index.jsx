@@ -11,6 +11,8 @@ import Card from '@/Components/DaisyUI/Card'
 import { formatDate } from '@/utils'
 import FormInputDateRanger from '@/Components/DaisyUI/FormInputDateRange'
 import { Option, Select } from '@/Components/DaisyUI/SelectInput'
+import Dropdown from '@/Components/DaisyUI/Dropdown'
+import { HiDotsVertical } from 'react-icons/hi'
 
 export default function Index(props) {
     const {
@@ -48,7 +50,7 @@ export default function Index(props) {
 
             <div>
                 <Card>
-                    <div className="flex flex-col md:flex-row gap-1 justify-between mb-4">
+                    <div className="flex flex-col md:flex-row gap-1 justify-between mb-4 items-end md:items-center">
                         <SearchInput
                             onChange={(e) => setSearch(e.target.value)}
                             value={search}
@@ -70,6 +72,29 @@ export default function Index(props) {
                                 onChange={(d) => setDates(d)}
                             />
                         </div>
+
+                        <Dropdown label={<HiDotsVertical />} with_icon={false}>
+                            <Dropdown.Item>
+                                <a
+                                    href={route('report.event.export')}
+                                    target="_blank"
+                                >
+                                    <div className="flex space-x-1 items-center">
+                                        <div>Export</div>
+                                    </div>
+                                </a>
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                                <a
+                                    href={route('report.event.print')}
+                                    target="_blank"
+                                >
+                                    <div className="flex space-x-1 items-center">
+                                        <div>Print</div>
+                                    </div>
+                                </a>
+                            </Dropdown.Item>
+                        </Dropdown>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="table">

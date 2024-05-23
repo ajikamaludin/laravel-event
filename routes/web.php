@@ -130,13 +130,26 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('report/')
         ->name('report.')
         ->group(function () {
+            Route::get('events/print', [Report\EventController::class, 'printEvent'])->name('event.print');
+            Route::get('events/export', [Report\EventController::class, 'exportEvent'])->name('event.export');
             Route::get('events', [Report\EventController::class, 'index'])->name('event.index');
+            Route::get('event-speakers/print', [Report\EventSpeakerController::class, 'print'])->name('event-speaker.print');
+            Route::get('event-speakers/export', [Report\EventSpeakerController::class, 'export'])->name('event-speaker.export');
             Route::get('event-speakers', [Report\EventSpeakerController::class, 'index'])->name('event-speaker.index');
+            Route::get('detail-events/{event}/print', [Report\EventController::class, 'printEventDetail'])->name('detail-event.print');
             Route::get('detail-events', [Report\EventController::class, 'show'])->name('detail-event.index');
+            Route::get('detail-participants/{participant}/{client}/print', [Report\EventParticipantReportController::class, 'printParticipantDetail'])->name('detail-participan.print');
             Route::get('detail-participants', [Report\EventParticipantReportController::class, 'show'])->name('detail-participan.index');
+            Route::get('event-finances/print', [Report\EventFinanceController::class, 'print'])->name('event-finance.print');
+            Route::get('event-finances/export', [Report\EventFinanceController::class, 'export'])->name('event-finance.export');
             Route::get('event-finances', [Report\EventFinanceController::class, 'index'])->name('event-finance.index');
+            Route::get('marketing-activities/print', [Report\MarketingActivityController::class, 'print'])->name('marketing-activity.print');
+            Route::get('marketing-activities/export', [Report\MarketingActivityController::class, 'export'])->name('marketing-activity.export');
             Route::get('marketing-activities', [Report\MarketingActivityController::class, 'index'])->name('marketing-activity.index');
+            Route::get('event-committees/print', [Report\EventCommitteReportController::class, 'print'])->name('event-committees.print');
+            Route::get('event-committees/export', [Report\EventCommitteReportController::class, 'export'])->name('event-committees.export');
             Route::get('event-committees', [Report\EventCommitteReportController::class, 'index'])->name('event-committees.index');
+            Route::get('book-participants/print', [Report\EventParticipantReportController::class, 'printParticipants'])->name('book-participant.print');
             Route::get('book-participants', [Report\EventParticipantReportController::class, 'index'])->name('book-participant.index');
         });
 });

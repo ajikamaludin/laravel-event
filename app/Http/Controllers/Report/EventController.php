@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\Report\EventExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\EventCategory;
@@ -9,6 +10,7 @@ use App\Models\EventType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
 {
@@ -68,6 +70,32 @@ class EventController extends Controller
 
         return inertia('Report/Event/Show', [
             '_event' => $event
+        ]);
+    }
+
+    public function exportEvent()
+    {
+        return Excel::download(new EventExport, 'report-event.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function printEvent()
+    {
+        return view('print.report.event', ['items' => Event::with(['client', 'type.category'])->withCount(['participants'])->get()]);
+    }
+
+
+    public function printEventDetail(Event $event)
+    {
+        return view('print.report.event_detail', [
+            'event' => $event->load([
+                'speakers.speaker',
+                'committes.committe',
+                'committes.task',
+                'logistics.logistic',
+                'client',
+                'finance',
+                'report'
+            ])->loadCount(['participants'])
         ]);
     }
 }

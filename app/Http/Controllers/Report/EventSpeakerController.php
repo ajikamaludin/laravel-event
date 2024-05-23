@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\Exports\Report\EventSpeakerExport;
 use App\Http\Controllers\Controller;
 use App\Models\EventSpeaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Inertia\Response;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventSpeakerController extends Controller
 {
@@ -42,5 +44,15 @@ class EventSpeakerController extends Controller
             '_start_date' => $startDate->format('Y-m-d'),
             '_end_date' => $endDate->format('Y-m-d')
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new EventSpeakerExport, 'report-event-speaker.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function print()
+    {
+        return view('print.report.event_speaker', ['items' => EventSpeaker::with(['event.client', 'speaker'])->get()]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\EventParticipant;
 use App\Models\Participant;
 use Illuminate\Http\Request;
@@ -70,5 +71,19 @@ class EventParticipantReportController extends Controller
         return inertia('Report/Participant/Index', [
             '_participant' => $participant
         ]);
+    }
+
+    public function printParticipants()
+    {
+        return view('print.report.participant', ['items' => EventParticipant::with(['participant'])->get()]);
+    }
+
+    public function printParticipantDetail(Participant $participant, Client $client)
+    {
+        return view('print.report.participant_detail', ['participant' => $participant->load([
+            'client',
+            'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $client->id)),
+            'events.event'
+        ])]);
     }
 }

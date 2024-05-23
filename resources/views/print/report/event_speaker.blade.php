@@ -17,13 +17,21 @@
     <table style="width: 100%;" border=1>
         <thead>
             <tr>
-                <td style="text-align: center;">Tugas</td>
+                <td style="text-align: center;">Tanggal</td>
+                <td style="text-align: center;">Nama Kegiatan</td>
+                <td style="text-align: center;">Lembaga</td>
+                <td style="text-align: center;">Pemateri</td>
+                <td style="text-align: center;">Judul</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($items as $index => $item)
             <tr>
-                <td>{{ $item->name }}</td>
+                <td>{{ $item->sdate }}</td>
+                <td>{{ $item->event->name }}</td>
+                <td>{{ $item->event->client->company_name }}</td>
+                <td>{{ $item->speaker->name }}</td>
+                <td>{{ $item->title }}</td>
             </tr>
             @endforeach
         </tbody>
