@@ -111,14 +111,14 @@ export default [
         icon: HiViewList,
         items: [
             {
-                name: 'Rekapitulsi Event',
+                name: 'Rekapitulasi Event',
                 show: true,
                 route: route('report.event.index'),
                 active: 'report.event.index',
                 permission: 'view-report',
             },
             {
-                name: 'Rekapitulsi Penugasan Pemateri',
+                name: 'Rekapitulasi Penugasan Pemateri',
                 show: true,
                 route: route('report.event-speaker.index'),
                 active: 'report.event-speaker.index',

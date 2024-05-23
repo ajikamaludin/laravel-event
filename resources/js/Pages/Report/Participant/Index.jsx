@@ -62,96 +62,89 @@ export default function Index(props) {
                     </div>
                     {_participant && (
                         <>
-                            <div className="w-full">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                ID
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.code}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Nama
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Email
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.email}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                No.Telp
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.phone}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Alamat
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.address}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Kota
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.city}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Tanggal Lahir
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.dob}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Jenis Kelamin
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>{_participant.gender}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Lembaga
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>
-                                                {
-                                                    _participant.client
-                                                        .company_name
-                                                }
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="font-bold py-2">
-                                                Photo
-                                            </td>
-                                            <td className="px-10">:</td>
-                                            <td>
-                                                {_participant.photo !==
-                                                    null && (
-                                                    <img
-                                                        src={
-                                                            _participant.photo_url
-                                                        }
-                                                        className="w-20"
-                                                    />
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div className="w-full flex flex-row gap-6">
+                                <div className="w-1/2">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    ID
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.code}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Nama
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Email
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    No.Telp
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Alamat
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.address}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Kota
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.city}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Tanggal Lahir
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.dob}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Jenis Kelamin
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>{_participant.gender}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="font-bold py-2">
+                                                    Lembaga
+                                                </td>
+                                                <td className="px-10">:</td>
+                                                <td>
+                                                    {
+                                                        _participant.client
+                                                            .company_name
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    {_participant.photo !== null && (
+                                        <img
+                                            src={_participant.photo_url}
+                                            className="w-48"
+                                        />
+                                    )}
+                                </div>
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="table">

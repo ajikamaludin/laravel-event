@@ -104,21 +104,33 @@ export default function Index(props) {
                                                 Pendapatan
                                             </td>
                                             <td className="px-10">:</td>
-                                            <td>{_event.finance.income}</td>
+                                            <td>
+                                                {formatIDR(
+                                                    _event.finance.income
+                                                )}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td className="font-bold py-2">
                                                 Pengeluaran
                                             </td>
                                             <td className="px-10">:</td>
-                                            <td>{_event.finance.expense}</td>
+                                            <td>
+                                                {formatIDR(
+                                                    _event.finance.expense
+                                                )}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td className="font-bold py-2">
                                                 Laba
                                             </td>
                                             <td className="px-10">:</td>
-                                            <td>{_event.finance.profit}</td>
+                                            <td>
+                                                {formatIDR(
+                                                    _event.finance.profit
+                                                )}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td className="font-bold py-2">

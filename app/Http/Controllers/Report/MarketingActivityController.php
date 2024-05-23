@@ -19,8 +19,10 @@ class MarketingActivityController extends Controller
         $query = MarketingActivity::with(['category', 'client', 'committee']);
 
         if ($request->q) {
-            $query->where('place', 'like', "%{$request->q}%")
-                ->orWhere('notes', 'like', "%{$request->q}%");
+            $query->where(function ($sq) use ($request) {
+                $sq->where('place', 'like', "%{$request->q}%")
+                    ->orWhere('notes', 'like', "%{$request->q}%");
+            });
         }
 
         if ($request->category) {
