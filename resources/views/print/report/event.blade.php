@@ -35,7 +35,7 @@
                 <td>{{ $item->client->company_name }}</td>
                 <td>{{ $item->type->category->name }}</td>
                 <td>{{ $item->place }}</td>
-                <td>{{ $item->participants_count }}</td>
+                <td>{{ $item->participant_count }}</td>
             </tr>
             @endforeach
         </tbody>

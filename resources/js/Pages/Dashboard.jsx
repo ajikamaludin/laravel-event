@@ -67,57 +67,21 @@ export default function Dashboard({
                                 events={calenderEvents}
                             />
                         </div>
-                        <div className="flex-1">
-                            <div className="text-lg font-bold">
-                                Event Terakhir
-                            </div>
-                            <div className="overflow-x-auto">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Tanggal Awal</th>
-                                            <th>Tanggal Akhir</th>
-                                            <th>Nama</th>
-                                            <th>Lembaga</th>
-                                            <th />
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {eventlasts.map((event, index) => (
-                                            <tr key={event.id}>
-                                                <td>{index + 1}</td>
-                                                <td>
-                                                    {formatDate(
-                                                        event.start_date
-                                                    )}
-                                                </td>
-                                                <td>
-                                                    {formatDate(event.end_date)}
-                                                </td>
-                                                <td>{event.name}</td>
-                                                <td>
-                                                    {event.client.company_name}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </Card>
 
                 <Card>
                     <div className="w-full gap-3 flex flex-col">
                         <FormInputDateRanger
-                            label="Periode"
+                            label={<div className="font-semibold">Periode</div>}
                             value={dates}
                             onChange={setDates}
                         />
                         <div>
-                            <div>Kegiatan Marketing</div>
-                            <div className="grid grid-flow-col gap-1">
+                            <div className="font-semibold">
+                                Kegiatan Marketing
+                            </div>
+                            <div className="grid grid-flow-row lg:grid-flow-col gap-1">
                                 {types.map((type) => (
                                     <div className="p-3 rounded-md shadow-sm border">
                                         <div className="font-semibold">
@@ -131,8 +95,8 @@ export default function Dashboard({
                             </div>
                         </div>
                         <div>
-                            <div>Ketegori Event</div>
-                            <div className="grid grid-flow-col gap-1">
+                            <div className="font-semibold">Ketegori Event</div>
+                            <div className="grid grid-flow-row lg:grid-flow-col gap-1">
                                 {eventcats.map((ec) => (
                                     <div className="p-3 rounded-md shadow-sm border">
                                         <div className="font-semibold">
@@ -146,7 +110,9 @@ export default function Dashboard({
                             </div>
                         </div>
                         <div>
-                            <div>Pendapatan, Biaya dan Laba</div>
+                            <div className="font-semibold">
+                                Pendapatan, Biaya dan Laba
+                            </div>
                             <div className="grid grid-flow-col gap-1">
                                 <div className="p-3 rounded-md shadow-sm border">
                                     <div className="font-semibold">
@@ -169,7 +135,7 @@ export default function Dashboard({
                             </div>
                         </div>
                         <div>
-                            <div>Jumlah Peserta</div>
+                            <div className="font-semibold">Jumlah Peserta</div>
                             <div className="w-full grid grid-flow-col gap-1">
                                 <Chart
                                     options={options}
@@ -179,6 +145,34 @@ export default function Dashboard({
                                 />
                             </div>
                         </div>
+                    </div>
+                </Card>
+                <Card>
+                    <div className="text-lg font-bold">Event Terakhir</div>
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tanggal Awal</th>
+                                    <th>Tanggal Akhir</th>
+                                    <th>Nama</th>
+                                    <th>Lembaga</th>
+                                    <th />
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {eventlasts.map((event, index) => (
+                                    <tr key={event.id}>
+                                        <td>{index + 1}</td>
+                                        <td>{formatDate(event.start_date)}</td>
+                                        <td>{formatDate(event.end_date)}</td>
+                                        <td>{event.name}</td>
+                                        <td>{event.client.company_name}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </Card>
             </div>

@@ -118,7 +118,7 @@ export default function Index(props) {
                                         <td>{event.client.company_name}</td>
                                         <td>{event.type.category.name}</td>
                                         <td>{event.place}</td>
-                                        <td>{event.participants_count}</td>
+                                        <td>{event.participant_count}</td>
                                     </tr>
                                 ))}
                             </tbody>

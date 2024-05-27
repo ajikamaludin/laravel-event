@@ -62,6 +62,7 @@ class EventController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|gte:start_date',
             'place' => 'nullable|string',
+            'participant_count' => 'nullable|numeric',
 
             'report_date' => 'nullable|date',
             'file_finance' => 'nullable|string',
@@ -93,6 +94,7 @@ class EventController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'place' => $request->place,
+            'participant_count' => $request->participant_count
         ]);
 
         $event->finance()->create([
@@ -180,6 +182,7 @@ class EventController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|gte:start_date',
             'place' => 'nullable|string',
+            'participant_count' => 'nullable|numeric',
 
             'report_date' => 'nullable|date',
             'file_finance' => 'nullable|string',
@@ -211,6 +214,7 @@ class EventController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'place' => $request->place,
+            'participant_count' => $request->participant_count
         ]);
 
         $event->report()->first()->update([

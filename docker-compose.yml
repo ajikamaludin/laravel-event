@@ -1,7 +1,7 @@
 services:
   app:
       image: dunglas/frankenphp
-      container_name: template-app
+      container_name: dti-app
       volumes:
         - ./:/app
         - /etc/timezone:/etc/timezone:ro
@@ -15,10 +15,10 @@ services:
       environment:
         - SERVER_NAME=:8000
       networks:
-        - template
+        - dti
   mariadb:
     image: mariadb:latest
-    container_name: template-mariadb
+    container_name: dti-mariadb
     ports:
       - 3306:3306
     volumes:
@@ -33,10 +33,10 @@ services:
     mem_reservation: 128M
     cpus: 0.5
     networks:
-      template:
+      dti:
         ipv4_address: 10.255.255.99
   phpmyadmin:
-    container_name: template-phpmyadmin
+    container_name: dti-phpmyadmin
     depends_on:
       - mariadb
     image: phpmyadmin
@@ -47,31 +47,10 @@ services:
       MYSQL_ROOT_PASSWORD: password
       UPLOAD_LIMIT: '2048M'
     networks:
-      - template
-  postgresql:
-    # image: postgres:latest
-    image: postgres:14-alpine3.17
-    container_name: template-postgres
-    restart: always
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./database:/database
-    environment:
-      POSTGRES_DB: app
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: password
-    mem_limit: 512m
-    mem_reservation: 128M
-    cpus: 0.5
-    networks:
-      template:
-        ipv4_address: 10.255.255.96
-
+      - dti
   build:
     image: node:20-alpine
-    container_name: template-build
+    container_name: dti-build
     ports:
       - 5173:5173
     volumes:
@@ -82,7 +61,7 @@ services:
     mem_reservation: 128M
     cpus: 1
     networks:
-      - template
+      - dti
 
 volumes:
   mariadb: 
@@ -91,7 +70,7 @@ volumes:
     driver: local
 
 networks:
-  template:
+  dti:
     driver: bridge
     ipam:
       driver: default

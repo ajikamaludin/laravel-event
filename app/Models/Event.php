@@ -11,6 +11,7 @@ class Event extends Model
         'end_date',
         'name',
         'place',
+        'participant_count',
     ];
 
     public function client()

@@ -100,7 +100,7 @@ export default function Index(props) {
                                                 Jumlah Peserta
                                             </td>
                                             <td className="px-10">:</td>
-                                            <td>{_event.participants_count}</td>
+                                            <td>{_event.participant_count}</td>
                                         </tr>
                                         <tr>
                                             <td className="font-bold py-2">

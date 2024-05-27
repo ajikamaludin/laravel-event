@@ -34,6 +34,7 @@ export default function Form(props) {
     const [client_id, setClientId] = useState(null)
     const [start_date, setStartDate] = useState(null)
     const [end_date, setEndDate] = useState(null)
+    const [participant_count, setParticipantCount] = useState(null)
 
     const [speakers, setSpeakers] = useState([])
     const [committes, setCommittes] = useState([])
@@ -117,6 +118,7 @@ export default function Form(props) {
             file_finance,
             file_event,
             status,
+            participant_count,
         }
         if (isEmpty(event) === false) {
             router.put(route('events.update', event), payload, {
@@ -153,6 +155,7 @@ export default function Form(props) {
             setFileFinanceUrl(event.report.file_finance_url)
             setFileEventUrl(event.report.file_event_url)
             setStatus(event.report.status)
+            setParticipantCount(event.participant_count)
         }
     }, [event])
 
@@ -223,6 +226,15 @@ export default function Form(props) {
                                 onChange={(e) => setPlace(e.target.value)}
                                 label="Tempat"
                                 error={errors.place}
+                            />
+                            <TextInput
+                                name="participant_count"
+                                value={participant_count}
+                                onChange={(e) =>
+                                    setParticipantCount(e.target.value)
+                                }
+                                label="Jumlah Peserta"
+                                error={errors.participant_count}
                             />
                         </div>
                     </Card>
