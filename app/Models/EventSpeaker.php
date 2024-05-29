@@ -13,11 +13,11 @@ class EventSpeaker extends Model
 
     public function speaker()
     {
-        return $this->belongsTo(Speaker::class, 'speaker_id');
+        return $this->belongsTo(Speaker::class, 'speaker_id')->withTrashed();
     }
 
     public function event()
     {
-        return $this->belongsTo(Event::class, 'event_id');
+        return $this->belongsTo(Event::class, 'event_id')->withTrashed();
     }
 }

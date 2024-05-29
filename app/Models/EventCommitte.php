@@ -22,11 +22,11 @@ class EventCommitte extends Model
 
     public function committe()
     {
-        return $this->belongsTo(Committe::class, 'committe_id');
+        return $this->belongsTo(Committe::class, 'committe_id')->withTrashed();
     }
 
     public function event()
     {
-        return $this->belongsTo(Event::class, 'event_id');
+        return $this->belongsTo(Event::class, 'event_id')->withTrashed();
     }
 }

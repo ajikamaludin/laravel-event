@@ -42,10 +42,9 @@ class GeneralController extends Controller
         });
 
         $eventparticipants = EventCategory::all()->map(function ($ec) use ($startDate, $endDate) {
-            $eventIds = Event::whereIn('type_id', EventType::where('category_id', $ec->id)->pluck('id')->toArray())
+            $ec->count = Event::whereIn('type_id', EventType::where('category_id', $ec->id)->pluck('id')->toArray())
                 ->whereBetween('start_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
-                ->pluck('id')->toArray();
-            $ec->count = EventParticipant::whereIn('event_id', $eventIds)->count();
+                ->sum('participant_count');
             return $ec;
         });
 
