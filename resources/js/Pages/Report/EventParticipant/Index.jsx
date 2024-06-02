@@ -89,7 +89,10 @@ export default function Index(props) {
                         </div>
                         <a
                             className="btn btn-secondary"
-                            href={route('report.book-participant.print')}
+                            href={route(
+                                'report.book-participant.print',
+                                params
+                            )}
                             target="_blank"
                         >
                             Print

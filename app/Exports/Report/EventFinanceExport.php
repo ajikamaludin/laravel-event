@@ -8,8 +8,12 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class EventFinanceExport implements FromView
 {
+    public function __construct(public $query)
+    {
+    }
+
     public function view(): View
     {
-        return view('print.report.event_finance', ['items' => Event::with(['client', 'type.category', 'finance'])->get()]);
+        return view('print.report.event_finance', ['items' => $this->query->get()]);
     }
 }

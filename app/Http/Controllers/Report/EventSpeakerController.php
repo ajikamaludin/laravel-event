@@ -14,6 +14,31 @@ class EventSpeakerController extends Controller
 {
     public function index(Request $request): Response
     {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return inertia('Report/EventSpeaker/Index', [
+            'data' => $query->paginate(10),
+            '_start_date' => $startDate->format('Y-m-d'),
+            '_end_date' => $endDate->format('Y-m-d')
+        ]);
+    }
+
+    public function export(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return Excel::download(new EventSpeakerExport($query), 'report-event-speaker.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function print(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return view('print.report.event_speaker', ['items' => $query->get()]);
+    }
+
+    private function query(Request $request)
+    {
         $startDate = now()->firstOfMonth();
         $endDate = now()->endOfMonth();
 
@@ -39,20 +64,6 @@ class EventSpeakerController extends Controller
 
         $query->orderBy('updated_at', 'desc');
 
-        return inertia('Report/EventSpeaker/Index', [
-            'data' => $query->paginate(10),
-            '_start_date' => $startDate->format('Y-m-d'),
-            '_end_date' => $endDate->format('Y-m-d')
-        ]);
-    }
-
-    public function export()
-    {
-        return Excel::download(new EventSpeakerExport, 'report-event-speaker.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-    }
-
-    public function print()
-    {
-        return view('print.report.event_speaker', ['items' => EventSpeaker::with(['event.client', 'speaker'])->get()]);
+        return [$query, $startDate, $endDate];
     }
 }

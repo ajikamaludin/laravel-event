@@ -8,8 +8,12 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class EventSpeakerExport implements FromView
 {
+    public function __construct(public $query)
+    {
+    }
+
     public function view(): View
     {
-        return view('print.report.event_speaker', ['items' => EventSpeaker::with(['event.client', 'speaker'])->get()]);
+        return view('print.report.event_speaker', ['items' => $this->query->get()]);
     }
 }

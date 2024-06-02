@@ -15,6 +15,32 @@ class MarketingActivityController extends Controller
 {
     public function index(Request $request): Response
     {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return inertia('Report/MarketingActivity/Index', [
+            'data' => $query->paginate(10),
+            'categories' => MarketingActivityCategory::all(),
+            '_start_date' => $startDate->format('Y-m-d'),
+            '_end_date' => $endDate->format('Y-m-d')
+        ]);
+    }
+
+    public function export(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return Excel::download(new MarketingActivityExport($query), 'report-kegiatan-marketing.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function print(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return view('print.report.marketing_activity', ['items' => $query->get()]);
+    }
+
+    private function query(Request $request)
+    {
         $startDate = now()->firstOfMonth();
         $endDate = now()->endOfMonth();
 
@@ -41,21 +67,6 @@ class MarketingActivityController extends Controller
 
         $query->orderBy('created_at', 'desc');
 
-        return inertia('Report/MarketingActivity/Index', [
-            'data' => $query->paginate(10),
-            'categories' => MarketingActivityCategory::all(),
-            '_start_date' => $startDate->format('Y-m-d'),
-            '_end_date' => $endDate->format('Y-m-d')
-        ]);
-    }
-
-    public function export()
-    {
-        return Excel::download(new MarketingActivityExport, 'report-kegiatan-marketing.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-    }
-
-    public function print()
-    {
-        return view('print.report.marketing_activity', ['items' => MarketingActivity::with(['category', 'client', 'committee'])->get()]);
+        return [$query, $startDate, $endDate];
     }
 }

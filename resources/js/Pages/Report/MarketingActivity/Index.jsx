@@ -79,7 +79,8 @@ export default function Index(props) {
                             <Dropdown.Item>
                                 <a
                                     href={route(
-                                        'report.marketing-activity.export'
+                                        'report.marketing-activity.export',
+                                        params
                                     )}
                                     target="_blank"
                                 >
@@ -91,7 +92,8 @@ export default function Index(props) {
                             <Dropdown.Item>
                                 <a
                                     href={route(
-                                        'report.marketing-activity.print'
+                                        'report.marketing-activity.print',
+                                        params
                                     )}
                                     target="_blank"
                                 >

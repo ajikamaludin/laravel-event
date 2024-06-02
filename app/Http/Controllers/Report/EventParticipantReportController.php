@@ -14,6 +14,51 @@ class EventParticipantReportController extends Controller
 {
     public function index(Request $request): Response
     {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return inertia('Report/EventParticipant/Index', [
+            'data' => $query->paginate(10),
+            '_start_date' => $startDate->format('Y-m-d'),
+            '_end_date' => $endDate->format('Y-m-d')
+        ]);
+    }
+
+    public function show(Request $request)
+    {
+        $participant = null;
+
+        if ($request->client && $request->participant) {
+            $participant = Participant::find($request->participant)
+                ->load([
+                    'client',
+                    'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $request->client)),
+                    'events.event'
+                ]);
+        }
+
+        return inertia('Report/Participant/Index', [
+            '_participant' => $participant
+        ]);
+    }
+
+    public function printParticipants(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return view('print.report.participant', ['items' => $query->get()]);
+    }
+
+    public function printParticipantDetail(Participant $participant, Client $client)
+    {
+        return view('print.report.participant_detail', ['participant' => $participant->load([
+            'client',
+            'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $client->id)),
+            'events.event'
+        ])]);
+    }
+
+    private function query(Request $request)
+    {
         $startDate = now()->firstOfMonth();
         $endDate = now()->endOfMonth();
 
@@ -48,42 +93,6 @@ class EventParticipantReportController extends Controller
 
         $query->orderBy('updated_at', 'desc');
 
-        return inertia('Report/EventParticipant/Index', [
-            'data' => $query->paginate(10),
-            '_start_date' => $startDate->format('Y-m-d'),
-            '_end_date' => $endDate->format('Y-m-d')
-        ]);
-    }
-
-    public function show(Request $request)
-    {
-        $participant = null;
-
-        if ($request->client && $request->participant) {
-            $participant = Participant::find($request->participant)
-                ->load([
-                    'client',
-                    'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $request->client)),
-                    'events.event'
-                ]);
-        }
-
-        return inertia('Report/Participant/Index', [
-            '_participant' => $participant
-        ]);
-    }
-
-    public function printParticipants()
-    {
-        return view('print.report.participant', ['items' => EventParticipant::with(['participant'])->get()]);
-    }
-
-    public function printParticipantDetail(Participant $participant, Client $client)
-    {
-        return view('print.report.participant_detail', ['participant' => $participant->load([
-            'client',
-            'events' => fn ($q) => $q->whereHas('event', fn ($q) => $q->where('client_id', $client->id)),
-            'events.event'
-        ])]);
+        return [$query, $startDate, $endDate];
     }
 }

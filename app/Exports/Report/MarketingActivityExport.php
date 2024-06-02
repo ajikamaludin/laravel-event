@@ -8,8 +8,12 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class MarketingActivityExport implements FromView
 {
+    public function __construct(public $query)
+    {
+    }
+
     public function view(): View
     {
-        return view('print.report.marketing_activity', ['items' => MarketingActivity::with(['category', 'client', 'committee'])->get()]);
+        return view('print.report.marketing_activity', ['items' => $this->query->get()]);
     }
 }

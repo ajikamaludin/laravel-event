@@ -8,8 +8,12 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class EventExport implements FromView
 {
+    public function __construct(public $query)
+    {
+    }
+
     public function view(): View
     {
-        return view('print.report.event', ['items' => Event::with(['client', 'type.category'])->withCount(['participants'])->get()]);
+        return view('print.report.event', ['items' => $this->query->get()]);
     }
 }

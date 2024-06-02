@@ -76,7 +76,7 @@ export default function Index(props) {
                         <Dropdown label={<HiDotsVertical />} with_icon={false}>
                             <Dropdown.Item>
                                 <a
-                                    href={route('report.event.export')}
+                                    href={route('report.event.export', params)}
                                     target="_blank"
                                 >
                                     <div className="flex space-x-1 items-center">
@@ -86,7 +86,7 @@ export default function Index(props) {
                             </Dropdown.Item>
                             <Dropdown.Item>
                                 <a
-                                    href={route('report.event.print')}
+                                    href={route('report.event.print', params)}
                                     target="_blank"
                                 >
                                     <div className="flex space-x-1 items-center">

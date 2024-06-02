@@ -16,6 +16,70 @@ class EventController extends Controller
 {
     public function index(Request $request): Response
     {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return inertia('Report/Event/Index', [
+            'data' => $query->paginate(10),
+            'categories' => EventCategory::all(),
+            '_start_date' => $startDate->format('Y-m-d'),
+            '_end_date' => $endDate->format('Y-m-d')
+        ]);
+    }
+
+    public function show(Request $request)
+    {
+        $event = null;
+
+        if ($request->event) {
+            $event = Event::find($request->event)
+                ->load([
+                    'speakers.speaker',
+                    'committes.committe',
+                    'committes.task',
+                    'logistics.logistic',
+                    'client',
+                    'finance',
+                    'report'
+                ]);
+        }
+
+        return inertia('Report/Event/Show', [
+            '_event' => $event
+        ]);
+    }
+
+    public function exportEvent(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return Excel::download(new EventExport($query), 'report-event.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    }
+
+    public function printEvent(Request $request)
+    {
+        [$query, $startDate, $endDate] = $this->query($request);
+
+        return view('print.report.event', ['items' => $query->get()]);
+    }
+
+
+    public function printEventDetail(Event $event)
+    {
+        return view('print.report.event_detail', [
+            'event' => $event->load([
+                'speakers.speaker',
+                'committes.committe',
+                'committes.task',
+                'logistics.logistic',
+                'client',
+                'finance',
+                'report'
+            ])
+        ]);
+    }
+
+    public function query(Request $request)
+    {
         $startDate = now()->firstOfMonth();
         $endDate = now()->endOfMonth();
 
@@ -42,60 +106,6 @@ class EventController extends Controller
 
         $query->orderBy('updated_at', 'desc');
 
-        return inertia('Report/Event/Index', [
-            'data' => $query->paginate(10),
-            'categories' => EventCategory::all(),
-            '_start_date' => $startDate->format('Y-m-d'),
-            '_end_date' => $endDate->format('Y-m-d')
-        ]);
-    }
-
-    public function show(Request $request)
-    {
-        $event = null;
-
-        if ($request->event) {
-            $event = Event::find($request->event)
-                ->load([
-                    'speakers.speaker',
-                    'committes.committe',
-                    'committes.task',
-                    'logistics.logistic',
-                    'client',
-                    'finance',
-                    'report'
-                ])
-                ->loadCount(['participants']);
-        }
-
-        return inertia('Report/Event/Show', [
-            '_event' => $event
-        ]);
-    }
-
-    public function exportEvent()
-    {
-        return Excel::download(new EventExport, 'report-event.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-    }
-
-    public function printEvent()
-    {
-        return view('print.report.event', ['items' => Event::with(['client', 'type.category'])->withCount(['participants'])->get()]);
-    }
-
-
-    public function printEventDetail(Event $event)
-    {
-        return view('print.report.event_detail', [
-            'event' => $event->load([
-                'speakers.speaker',
-                'committes.committe',
-                'committes.task',
-                'logistics.logistic',
-                'client',
-                'finance',
-                'report'
-            ])->loadCount(['participants'])
-        ]);
+        return [$query, $startDate, $endDate];
     }
 }
