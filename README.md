@@ -1,6 +1,6 @@
 # Managemen Event
 
-managemen event merupakan aplikasi untuk melakukan pengelolaan dan pengawasa event
+managemen event merupakan aplikasi untuk melakukan pengelolaan dan pengawasa event, peserta, pemateri dan jadwal event
 
 ## Support me
 
