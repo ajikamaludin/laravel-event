@@ -1,6 +1,6 @@
-# DTI - Core
+# Managemen Event
 
-??? app description ???
+managemen event merupakan aplikasi untuk melakukan pengelolaan dan pengawasa event
 
 ## Support me
 
