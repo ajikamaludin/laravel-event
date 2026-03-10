@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.2.0",
         "dyrynda/laravel-cascade-soft-deletes": "^4.5.0",
-        "firebase/php-jwt": "^6.11.1",
+        "firebase/php-jwt": "^7.0.3",
         "guzzlehttp/guzzle": "^7.10.0",
         "inertiajs/inertia-laravel": "^2.0.21",
         "laravel/framework": "^12.53.0",
