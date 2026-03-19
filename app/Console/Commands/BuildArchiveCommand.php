@@ -28,7 +28,7 @@ class BuildArchiveCommand extends Command
     /**
      * Configure the command.
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setAliases(['compress', 'build', 'b']);
 
